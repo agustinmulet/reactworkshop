@@ -10,6 +10,7 @@ La filosofía de React dice que el flujo de datos es _unidireccional_ y _top-dow
 La forma de pasar datos de padres a hijos se denomina **Props** y son inmutables, es decir que un componente que recibe props, solamente puede leerlas y no sobreescribir el dato que recibe.
 
 ![alt text](https://cms-assets.tutsplus.com/uploads/users/1795/posts/29541/image/Stateful-vs-Stateless-Component-Tutorial-Component-with-prop.jpg "Props")
+
 Como vemos, las props son externas a nuestro componente. (Imagen tomada prestada de [este post](https://code.tutsplus.com/tutorials/stateful-vs-stateless-functional-components-in-react--cms-29541))
 
 Entonces probemos con lo que ya tenemos, hagamos que nuestro componente `Saludo` diga 'Hola' y nuestro nombre. Entonces, donde utilizamos nuestro componente, pasamos una Prop llamada `nombre` (lo elegimos nosotros el nombre) con el dato, en mi caso, "Agustin":
@@ -76,6 +77,7 @@ Al cambiar el estado en un componente, los componentes que tengan props que depe
 La forma de cambiar el estado de un componente es utilizando el método `setState` pasando como parámetro un objeto donde le indicamos qué partes del estado queremos cambiar. Luego React se encarga de hacer todos los cambios de forma **asíncrona** (cuidado con esto, no es instantáneo el cambio de estado), actualizar el estado, el virtual DOM y el DOM por nosotros.
 
 ![alt text](https://cms-assets.tutsplus.com/uploads/users/1795/posts/29541/image/Stateful-vs-Stateless-Component-Tutorial-Component-with-state.jpg "State")
+
 Y acá vemos que el State es interno de cada componente. (Imagen tomada prestada de [este post](https://code.tutsplus.com/tutorials/stateful-vs-stateless-functional-components-in-react--cms-29541))
 
 Cada componente no sabe si el otro componente (padre, hijo, hermano, tátara-tátara-abuelo(??)) tiene estado o no, pero sí puede recibir ese estado como prop.

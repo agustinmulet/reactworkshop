@@ -142,7 +142,7 @@ Ya tenemos entonces nuestro código a repetir, la data en un array y nuestra her
 ```
 </details>
 
-Esa es mi solución, ah, qué? Que qué es `getWeekDay()`? Es una función que ~~hice~~ me pasó [Goncy](https://twitter.com/goncy) para mostrar el día de la semana calculando desde la fecha en formato UNIX que nos proveen en `date_epoch`.
+Esa es mi solución, ah, qué? Que qué es `getWeekDay()`? Es una función que ~~hice yo 😎~~ me pasó [Goncy](https://twitter.com/goncy) para mostrar el día de la semana calculando desde la fecha en formato UNIX que nos proveen en `date_epoch`.
 Para hacerla es como hicimos antes cuando vimos [Props y State](PropsState.md), pero debemos definir antes un arreglo con los días de la semana, el cual va por fuera de la definición de nuestro componente.
 
 ```jsx
@@ -355,7 +355,11 @@ Ahora les queda como tarea hacer lo mismo con el componente de abajo, al que pod
 Una vez que finalicen, les deberían quedar estos archivos:
 (no espíen antes de probar ehhhhh)
 
-<details><summary>**App.js**</summary>
+<details>
+<summary>
+**App.js**
+
+</summary>
 
 ```jsx
 import React, { Component } from "react";
@@ -409,7 +413,10 @@ export default App;
 
 </details>
 
-<details><summary>**Top.js**</summary>
+<details>
+<summary>
+**Top.js**
+</summary>
 
 ```jsx
 import React from "react";
@@ -440,7 +447,10 @@ export default Top;
 
 </details>
 
-<details><summary>**Bottom.js**</summary>
+<details>
+<summary>
+**Bottom.js**
+</summary>
 
 ```jsx
 import React from "react";
@@ -462,7 +472,10 @@ export default Bottom;
 
 </details>
 
-<details><summary>**Card.js**</summary>
+<details>
+<summary>
+**Card.js**
+</summary>
 
 ```jsx
 import React from "react";

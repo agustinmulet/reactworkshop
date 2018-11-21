@@ -150,7 +150,11 @@ Usando `replace` le decimos que reemplace '64x64' por '128x128' en la URL recibi
 
 Una vez que terminamos con la parte de arriba, debería quedarnos algo así nuestro `App.js`:
 
-<details><summary>Click para ver</summary>
+<details>
+<summary>
+Click para ver
+
+</summary>
 
 ```jsx
 import React, { Component } from "react";

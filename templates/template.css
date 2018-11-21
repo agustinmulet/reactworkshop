@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+.App {
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.container {
+  width: 900px;
+  height: 600px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 25px #888888;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1.9fr 1fr;
+  grid-template-areas:
+    "top"
+    "bottom";
+}
+
+.top {
+  display: grid;
+  border-radius: 20px 20px 0 0;
+  background-image: url("http://www.motherlandsafaris.com/wp-content/uploads/2014/11/weather.jpg");
+  background-size: cover;
+  justify-content: end;
+  grid-area: top;
+}
+
+.image {
+  height: 128px;
+  width: 128px;
+  justify-self: flex-end;
+}
+
+.city {
+  margin: 0 8px;
+}
+
+.temp {
+  font-size: 95px;
+  padding: 0 10px 0 0;
+  margin: 0;
+  font-weight: bolder;
+}
+
+.minmax {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-content: space-around;
+  font-weight: bolder;
+}
+
+.minmax p {
+  margin-bottom: 5px;
+}
+
+.tempmax {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+
+  border-bottom: 15px solid #ff4136;
+  margin-top: -25px;
+}
+
+.tempmin {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+
+  border-top: 15px solid #0074d9;
+  margin-top: -25px;
+}
+
+.bottom {
+  border-radius: 0 0 20px 20px;
+  display: grid;
+  grid-area: bottom;
+  background: #fff;
+  color: #282c34;
+  grid-template-columns: 150px 150px 150px 150px 150px 150px;
+  grid-template-rows: auto;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+}
+
+.card:not(:last-child) {
+  border-right: 1px solid gray;
+}
+
+.card h5 {
+  margin: 14px 0 7px 0;
+}
+
+.imagebottom {
+  width: 64px;
+  height: 64px;
+}

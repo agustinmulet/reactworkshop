@@ -1,0 +1,12 @@
+{
+  "name": "reactworkshop",
+  "version": "1.0.0",
+  "description": "Workshop de React + Presentación hecha en mdx-deck",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Agustin Mulet <agustin.mulet@gmail.com>",
+  "license": "ISC"
+}

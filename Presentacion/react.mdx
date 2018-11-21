@@ -1,0 +1,85 @@
+export { default as theme } from './theme'
+import { Appear, Image, Notes } from 'mdx-deck'
+
+import Iconito from './Iconito'
+
+<Iconito icono="react" tamanio="10x"/>
+
+# (Mini) Intro + Workshop
+# React
+
+---
+
+# Sobre mi
+
+<Image src="./img/yo.jpg" style={{
+    height:'300px',
+     width:'300px',
+     display:'block',
+     marginLeft: 'auto',
+     marginRight: 'auto',
+     borderRadius: '100%'
+}}/>
+
+Frontend developer
+
+<Image src="./img/ewwo.png" style={{
+    height: '60px',
+    width: '60%',
+    display:'block',
+     marginLeft: 'auto',
+     marginRight: 'auto',
+     marginBottom: '54px'
+}}/>
+
+<Iconito icono="twitter" tamanio="1x" /> @AgustinDMulet
+
+---
+
+# ¿Qué es react?
+<Notes>
+    Es una biblioteca de Javascript para desarrollo de interfaces hecha por ingenieros 
+    de Facebook en 2013 basada en componentes (codigo reutilizable). Posee ventajas en 
+    performance respecto a jQuery por ejemplo gracias al virtual DOM. Está enfocada
+    por el lado de JS y no por el lado de HTML como AngularJS y Vue y la data fluye
+    de forma unidireccional, de componente padre a hijo.
+</Notes>
+
+---
+
+# Cosas básicas a saber para entender React
+
+* Componentes
+* JSX
+* Props
+* State
+
+---
+
+## Ejemplo de componente
+
+```jsx
+import React from 'react';
+
+class MensajeHola extends React.Component {
+  state = {
+      dia: 'jueves',
+  }
+  render() {
+    return (
+      <div>
+        Hola {this.props.name}!
+        Hoy es {this.state.dia}
+      </div>
+    );
+  };
+};
+
+export default MensajeHola;
+```
+---
+
+# ¡Gracias!
+
+### La seguimos en el repo
+[Repo del Workshop](https://github.com/agustinmulet/reactworkshop)

@@ -310,7 +310,7 @@ export default App;
 
 </details>
 
---
+---
 
 Lo tenés igual? Parecido? Bueno, si ves que te trabaste con algo o no te sale, podés copiar y pegar o leer el código por algún _gotcha_ de algo que no te esté saliendo 😁
 

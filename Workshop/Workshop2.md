@@ -112,7 +112,11 @@ export default App;
 
 Ya tenemos entonces nuestro código a repetir, la data en un array y nuestra herramienta para iterar, prueben hacerlo y cualquier cosa dejo la solución en el dropdown.
 
-<details><summary>Solución</summary>
+<details>
+<summary>
+<b>Solución</b>
+</summary>
+
 ```jsx
 <div className="bottom">
   {forecast.forecastday.map(dia => {
@@ -140,6 +144,7 @@ Ya tenemos entonces nuestro código a repetir, la data en un array y nuestra her
   })}
 </div>
 ```
+
 </details>
 
 Esa es mi solución, ah, qué? Que qué es `getWeekDay()`? Es una función que ~~hice yo 😎~~ me pasó [Goncy](https://twitter.com/goncy) para mostrar el día de la semana calculando desde la fecha en formato UNIX que nos proveen en `date_epoch`.
@@ -179,7 +184,10 @@ También vemos que las fechas máxima y mínima desde la API nos la proveen como
 Ya está, tenemos todo funcional y todo lindo, ahora nos falta algo clave, **componentizar**.
 Dejo el código hasta ahora y pensamos las divisiones:
 
-<details><summary>Código hasta ahora</summary>
+<details>
+<summary>
+<b>Código hasta ahora</b>
+</summary>
 
 ```jsx
 import React, { Component } from "react";
@@ -473,7 +481,7 @@ export default Bottom;
 
 <details>
 <summary>
-<b>Card.js**</b>
+<b>Card.js</b>
 </summary>
 
 ```jsx

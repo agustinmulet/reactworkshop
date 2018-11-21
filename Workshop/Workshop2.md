@@ -147,7 +147,9 @@ Ya tenemos entonces nuestro código a repetir, la data en un array y nuestra her
 
 </details>
 
-Esa es mi solución, ah, qué? Que qué es `getWeekDay()`? Es una función que ~~hice yo 😎~~ me pasó [Goncy](https://twitter.com/goncy) para mostrar el día de la semana calculando desde la fecha en formato UNIX que nos proveen en `date_epoch`.
+---
+
+Esa es mi solución, ah, qué? Que qué es `getWeekDay()`? Es una función que ~~hice yo ;)~~ me pasó [Goncy](https://twitter.com/goncy) para mostrar el día de la semana calculando desde la fecha en formato UNIX que nos proveen en `date_epoch`.
 Para hacerla es como hicimos antes cuando vimos [Props y State](PropsState.md), pero debemos definir antes un arreglo con los días de la semana, el cual va por fuera de la definición de nuestro componente.
 
 ```jsx
@@ -291,6 +293,8 @@ export default App;
 ```
 
 </details>
+
+---
 
 Ahora es cuando uno decide qué tanto componentizar, qué tan atómico ser. Podemos hacer que la parte de arriba sea un componente y la parte de abajo otro, o la parte de arriba y la card otro, o dejar la parte de arriba como parte del componente App y que la parte de abajo sea otro componente... En fin, hay varias posibilidades, para este workshop lo que vamos a hacer es que lo que está en la parte de arriba sea un componente, lo que está abajo sea otro y lo que llamamos card sea otro, que es el que más nos hace ver el tema de la reutilización de código.
 
@@ -530,6 +534,8 @@ export default Card;
 ```
 
 </details>
+
+---
 
 **Listo!!** Phew~ ya deberíamos tener nuestra app del clima funcionando a la perfección! Espero que hayan disfrutado este workshop y cualquier cosa que les parezca mejorable o que no esté claramente explicada, manden PR para poder hacer un buen workshop de React desde cero y que más gente pueda aprender.
 

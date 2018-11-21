@@ -357,8 +357,7 @@ Una vez que finalicen, les deberían quedar estos archivos:
 
 <details>
 <summary>
-**App.js**
-
+<b>App.js</b>
 </summary>
 
 ```jsx
@@ -415,7 +414,7 @@ export default App;
 
 <details>
 <summary>
-**Top.js**
+<b>Top.js</b>
 </summary>
 
 ```jsx
@@ -449,7 +448,7 @@ export default Top;
 
 <details>
 <summary>
-**Bottom.js**
+<b>Bottom.js</b>
 </summary>
 
 ```jsx
@@ -474,7 +473,7 @@ export default Bottom;
 
 <details>
 <summary>
-**Card.js**
+<b>Card.js**</b>
 </summary>
 
 ```jsx
@@ -535,3 +534,7 @@ Ahora la idea es ir mejorando lo que tenemos, les tiro un par de ideas de cosas 
 - Agregar un input y buscar el clima en distintas ciudades
 
 Y mil cosas más se pueden hacer, pero esas me parecen copadas 😄😄
+
+[⭠ Volver a la primer parte del Workshop](Workshop.md)
+
+[⇐ Volver al principio](../README.md)

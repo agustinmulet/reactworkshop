@@ -254,4 +254,6 @@ Ya hiciste tu primer componente, **felicitaciones!!!!** 🎉🎉🎉🎉🎉🎉
 
 Ahora necesitamos aprender **Props**, **State** y algunas cosas más de componentes para poder seguir, no me odies, yo sé que es mucha teoría.
 
-[Vamos con Props y State ->](PropsState.md)
+[⭠ Volver al README](../README.md)
+
+[Vamos con Props y State ⭢](PropsState.md)

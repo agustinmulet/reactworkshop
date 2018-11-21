@@ -97,7 +97,7 @@ Ya vimos más arriba qué recibimos en el JSON y un link a la docu de apixu para
 
 Así que, por lo que podemos ver, en la parte de arriba (el `div` con la clase 'top') vamos a usar más que nada datos de la parte de `current` y `location`.
 
-Un **truquito** (ponele) para que no nos quede taaan largo nuestro código al usar los datos de nuestro estado (_this.state.clima.blablabla_ cada vez), podemos usar _destructuring_ de ES6:
+Un **truquito** (ponele) para que no nos quede taaan largo nuestro código al usar los datos de nuestro estado (_this.state.clima.blablabla_ cada vez), podemos usar [_destructuring_](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Operadores/Destructuring_assignment) de ES6:
 
 ```jsx
 const { location, current, forecast } = this.state.clima;
@@ -153,7 +153,7 @@ Una vez que terminamos con la parte de arriba, debería quedarnos algo así nues
 <details>
 <summary>
 Click para ver
-
+<br>
 </summary>
 
 ```jsx
@@ -319,4 +319,6 @@ Listo, ya tenemos la parte de arriba andando **perfectamente** y ahora vamos a a
 
 La idea de React y los componentes es tener partes reutilizables de código, entonces, qué vemos que se repite y pueda reutilizarse en nuestro componente? Eso que se repite podemos separarlo en un componente aparte. Ya lo identificaste?
 
-[Vamos al siguiente paso entonces!](Workshop2.md)
+[⭠ Volver a Props y State](PropsState.md)
+
+[Vamos al siguiente paso entonces! ⭢](Workshop2.md)

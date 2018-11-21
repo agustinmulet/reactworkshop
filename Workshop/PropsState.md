@@ -244,4 +244,6 @@ Y así es como queda, por ejemplo, nuestro componente `Saludo` aislado y reutili
 
 Con lo que vimos, ya creo que estamos listos para empezar a trabajar en nuestra app del clima.
 
-[Vamos a hacer la app! ->](Workshop.md)
+[⭠ Volver a la Intro](Intro.md)
+
+[Vamos a hacer la app! ⭢](Workshop.md)

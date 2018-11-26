@@ -23,6 +23,7 @@ Según la docu de Apixu, si le 'pegamos' a esta dirección, vamos a tener el pro
 `http://api.apixu.com/v1/forecast.json?key=<YOUR_API_KEY>&q=Buenos+Aires&days=6`
 
 Donde dice `<YOUR_API_KEY>` ponemos nuestra key generada cuando nos registramos, y si vamos a esa dirección en el navegador (con nuestra key pegada) vamos a ver un JSON con toda la data que necesitamos (si se veo medio feo podemos copiar y pegar el texto del JSON en [JSON Formatter](https://jsonformatter.org) y va a quedar más claro cómo están compuestos los objetos, y en la [docu de apixu](https://www.apixu.com/doc/forecast.aspx) explica qué es cada parte del objeto, aunque vamos a ir viendo qué necesitamos para cada parte de nuestra app)
+Como podemos ver, estamos buscando el clima en la ciudad de Buenos Aires, pero cambien el texto por su ciudad o por la que quieran buscar en el mundo! 😁
 
 Y ahora la pregunta del millón: **dónde hacemos la llamada a la API en nuestro componente?**
 
@@ -33,7 +34,30 @@ En este diagrama podemos verlos bien y cuándo se ejecuta cada uno:
 [Diagrama de Ciclos de vida de componentes](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 
 El método donde vamos a hacer el fetch hacia la API de apixu es `componentDidMount()`, con la idea de que primero nuestro componente se monte (y renderice) correctamente y en ese momento buscar los datos para que se actualice el estado de nuestro componente causando que React lo re-renderice (no es algo que afecte a la performance, como dijimos, renderiza lo justo y necesario nomás).
-Entonces, manos a la obra!
+Antes de hacer el fetch, tenemos que saber algo sobre usar keys en el frontend de nuestras apps.
+
+### Seguridad con APIs y variables de entorno
+
+Cuando trabajamos en equipo y también cuando utilizamos datos sensibles que no queremos compartir con el mundo para que no se abusen de ellos (por ejemplo, nuestra API key, que pertenece a nuestro usuario), se utilizan variables de entorno en un archivo `.env`, el cual puede tener una extensión distinta si es que son variables del entorno de desarrollo local (.env.development.local) que utilizamos cuando estamos desarrollando en nuestra PC o variables de producción (.env.production) que son para cuando nuestra aplicación ya está funcionando en el mundo exterior.
+Entonces vamos a aprovechar una de las bondades que nos da `create-react-app` y vamos a generar un archivo de desarrollo local para usar nuestra API key sin tener que luego preocuparnos por la seguridad de la misma si subimos nuestro código a github por ejemplo.
+Según [la documentación](https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables), debemos crear un archivo en la raíz de nuestro proyecto (sería junto al package.json, el .gitignore, etc.) y lo vamos a llamar `.env.development.local` (sí, comienza con un punto, al igual que el .gitignore). Dentro debemos definir nuestra variable de entorno, que por convención se escriben en mayúsculas y según la documentación de create-react-app, **DEBE** comenzar con "REACT_APP". Podemos llamarla `REACT_APP_API_KEY` para saber a qué nos referimos cuando la querramos usar.
+Entonces dentro del archivo debemos tener una línea como la siguiente:
+
+```
+REACT_APP_API_KEY="0df7569d7af3432a932170055XXXXXX"
+```
+
+Ya con tener esa línea podemos usar esta variable para hacer el fetch, para utilizarla debemos anteponer `process.env.` + nuestra variable a utilizar. En nuestro caso podemos usarla sumando strings "a la vieja usanza", o en mi opinión de forma más prolija, utilizando [template strings de ES6](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/template_strings), lo cual quedaría de la siguiente manera:
+
+```javascript
+`http://api.apixu.com/v1/forecast.json?key=${
+  process.env.REACT_APP_API_KEY
+}&q=Buenos+Aires&days=6`;
+```
+
+Donde podemos observar que el string en su totalidad va a estar envuelto entre dos backticks (`) y al momento de utilizar la variable, debe estar entre los caracteres`\${}`, queda más limpio que "string" + variable + "string", no? También se pueden utilizar expresiones entre esos caracteres, es súper útil!
+
+Bueno, ya tenemos nuestra API key y la vamos a tener resguardada a la hora de subir nuestro código a algún lado, no nos queda otra que arrancar con el fetch, manos a la obra!
 
 Esto es lo que vamos a hacer:
 
@@ -70,7 +94,7 @@ class App extends Component {
   // Definimos el método componentDidMount con el fetch
   componentDidMount() {
     fetch(
-      "http://api.apixu.com/v1/forecast.json?key=0df7569d7af3432a932170055XXXXXX&q=Buenos+Aires&days=6"
+      `http://api.apixu.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=Buenos+Aires&days=6`
     )
       .then(response => response.json())
       .then(jsonData => {
@@ -131,7 +155,7 @@ Entonces hacemos lo siguiente:
 [...]
   componentDidMount() {
     fetch(
-      "http://api.apixu.com/v1/forecast.json?key=0df7569d7af3432a932170055XXXXXX&q=Buenos+Aires&days=6"
+      `http://api.apixu.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=Buenos+Aires&days=6`
     )
       .then(response => response.json())
       .then(jsonData => {
@@ -171,7 +195,9 @@ class App extends Component {
 
   componentDidMount() {
     fetch(
-      "http://api.apixu.com/v1/forecast.json?key=0df7569d7af3432a932170055XXXXXX&q=Buenos+Aires&days=6"
+      `http://api.apixu.com/v1/forecast.json?key=${
+        process.env.REACT_APP_API_KEY
+      }&q=Buenos+Aires&days=6`
     )
       .then(response => response.json())
       .then(jsonData => {

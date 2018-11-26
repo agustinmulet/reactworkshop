@@ -221,7 +221,9 @@ class App extends Component {
 
   componentDidMount() {
     fetch(
-      "http://api.apixu.com/v1/forecast.json?key=0df7569d7af3432a932170055XXXXXX&q=Buenos+Aires&days=6"
+      `http://api.apixu.com/v1/forecast.json?key=${
+        process.env.REACT_APP_API_KEY
+      }&q=Buenos+Aires&days=6`
     )
       .then(response => response.json())
       .then(jsonData => {
@@ -390,7 +392,9 @@ class App extends Component {
 
   componentDidMount() {
     fetch(
-      "http://api.apixu.com/v1/forecast.json?key=0df7569d7af3432a932170055XXXXXX&q=Buenos+Aires&days=6"
+      `http://api.apixu.com/v1/forecast.json?key=${
+        process.env.REACT_APP_API_KEY
+      }&q=Buenos+Aires&days=6`
     )
       .then(result => result.json())
       .then(data => {

@@ -7,7 +7,7 @@ En pocas palabras podemos decir que **State** es donde viven nuestros datos y **
 
 La filosofía de React dice que el flujo de datos es _unidireccional_ y _top-down_, es decir, que los datos se pueden pasar de componentes padres a componentes hijos. (Se puede pasar de hijo a padre también, pero no vayamos en contra de lo que nos sugieren por ahora)
 
-La forma de pasar datos de padres a hijos se denomina **Props** y son inmutables, es decir que un componente que recibe props, solamente puede leerlas y no sobreescribir el dato que recibe.
+La forma de pasar datos de padres a hijos se denomina **Props** y son inmutables, es decir que un componente que recibe props, solamente puede leerlas y no sobreescribir el dato que recibe. (Son read-only)
 
 ![alt text](https://cms-assets.tutsplus.com/uploads/users/1795/posts/29541/image/Stateful-vs-Stateless-Component-Tutorial-Component-with-prop.jpg "Props")
 

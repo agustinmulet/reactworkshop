@@ -1,8 +1,12 @@
 # Workshop de React
 
-En este workshop, la idea es entender bases de React haciendo una app que nos muestre el clima en alguna ciudad.
+En este workshop, la idea es entender bases de React haciendo una app que nos muestre el clima en alguna ciudad. (Buenos Aires en el ejemplo pero pueden cambiarlo por la ciudad donde viven 😀)
 
-[Vamos al Workshop nomás](Workshop/Intro.md)
+La idea es empezar viendo la intro que posee data adicional en las notas para presentación (<kbd>alt</kbd> + <kbd>p</kbd>)
+
+[Click para ver la presentación ⚛️](https://mini-introreact.netlify.com/)
+
+[Vamos al Workshop nomás ⇨](Workshop/Intro.md)
 
 Si queremos ampliar los 4 conceptos fundamentales, en cada uno de estos links hay teoría para profundizar sobre cada tema:
 

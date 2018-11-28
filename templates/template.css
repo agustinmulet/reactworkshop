@@ -30,7 +30,7 @@
 .top {
   display: grid;
   border-radius: 20px 20px 0 0;
-  background-image: url("http://www.motherlandsafaris.com/wp-content/uploads/2014/11/weather.jpg");
+  background-image: url("https://www.motherlandsafaris.com/wp-content/uploads/2014/11/weather.jpg");
   background-size: cover;
   justify-content: end;
   grid-area: top;

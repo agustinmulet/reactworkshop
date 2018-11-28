@@ -20,7 +20,7 @@ Hacer `API calls`, llamadas a las APIs, en React es quizás algo no tan simple c
 Antes de hacer el `fetch` para traer la data, tenemos que saber dónde pedirla 😝
 Según la docu de Apixu, si le 'pegamos' a esta dirección, vamos a tener el pronóstico para el día de hoy + 6 días (sí, el día de hoy está incluido cuando hacemos `days=7`, está dos veces...)
 
-`http://api.apixu.com/v1/forecast.json?key=<YOUR_API_KEY>&q=Buenos+Aires&days=6`
+`https://api.apixu.com/v1/forecast.json?key=<YOUR_API_KEY>&q=Buenos+Aires&days=6`
 
 Donde dice `<YOUR_API_KEY>` ponemos nuestra key generada cuando nos registramos, y si vamos a esa dirección en el navegador (con nuestra key pegada) vamos a ver un JSON con toda la data que necesitamos (si se veo medio feo podemos copiar y pegar el texto del JSON en [JSON Formatter](https://jsonformatter.org) y va a quedar más claro cómo están compuestos los objetos, y en la [docu de apixu](https://www.apixu.com/doc/forecast.aspx) explica qué es cada parte del objeto, aunque vamos a ir viendo qué necesitamos para cada parte de nuestra app)
 Como podemos ver, estamos buscando el clima en la ciudad de Buenos Aires, pero cambien el texto por su ciudad o por la que quieran buscar en el mundo! 😁
@@ -50,14 +50,16 @@ REACT_APP_API_KEY="0df7569d7af3432a932170055XXXXXX"
 Ya con tener esa línea podemos usar esta variable para hacer el fetch, para utilizarla debemos anteponer `process.env.` + nuestra variable a utilizar. En nuestro caso podemos usarla sumando strings "a la vieja usanza", o en mi opinión de forma más prolija, utilizando [template strings de ES6](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/template_strings), lo cual quedaría de la siguiente manera:
 
 ```javascript
-`http://api.apixu.com/v1/forecast.json?key=${
+`https://api.apixu.com/v1/forecast.json?key=${
   process.env.REACT_APP_API_KEY
 }&q=Buenos+Aires&days=6`;
 ```
 
 Donde podemos observar que el string en su totalidad va a estar envuelto entre dos backticks (`) y al momento de utilizar la variable, debe estar entre los caracteres`\${}`, queda más limpio que "string" + variable + "string", no? También se pueden utilizar expresiones entre esos caracteres, es súper útil!
 
-Bueno, ya tenemos nuestra API key y la vamos a tener resguardada a la hora de subir nuestro código a algún lado, no nos queda otra que arrancar con el fetch, manos a la obra!
+**IMPORTANTE:** En este momento ya teniendo nuestro archivo generado con la data de nuestra API key, hay que reiniciar el servidor local de desarrollo para que nuestra app pueda ver el `.env.development.local`, sino vamos a tener problemas después y no vamos a poder usar la variable de entorno. Así que vamos a nuestra terminal donde esté corriendo el servidor y hacemos <kbd>Ctrl</kbd> + <kbd>C</kbd> y luego corremos el comando `npm start`. Ahora podemos seguir sin problemas 😁
+
+Bueno, ya tenemos nuestra API key y la vamos a tener resguardada a la hora de subir nuestro código a algún lado (no se va a subir ese archivo porque figura en el .gitignore), ya no nos queda otra que arrancar con el fetch, manos a la obra!
 
 Esto es lo que vamos a hacer:
 
@@ -94,7 +96,7 @@ class App extends Component {
   // Definimos el método componentDidMount con el fetch
   componentDidMount() {
     fetch(
-      `http://api.apixu.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=Buenos+Aires&days=6`
+      `https://api.apixu.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=Buenos+Aires&days=6`
     )
       .then(response => response.json())
       .then(jsonData => {
@@ -155,7 +157,7 @@ Entonces hacemos lo siguiente:
 [...]
   componentDidMount() {
     fetch(
-      `http://api.apixu.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=Buenos+Aires&days=6`
+      `https://api.apixu.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=Buenos+Aires&days=6`
     )
       .then(response => response.json())
       .then(jsonData => {
@@ -195,7 +197,7 @@ class App extends Component {
 
   componentDidMount() {
     fetch(
-      `http://api.apixu.com/v1/forecast.json?key=${
+      `https://api.apixu.com/v1/forecast.json?key=${
         process.env.REACT_APP_API_KEY
       }&q=Buenos+Aires&days=6`
     )

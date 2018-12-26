@@ -541,18 +541,8 @@ export default Card;
 
 ---
 
-**Listo!!** Phew~ ya deberíamos tener nuestra app del clima funcionando a la perfección! Espero que hayan disfrutado este workshop y cualquier cosa que les parezca mejorable o que no esté claramente explicada, manden PR para poder hacer un buen workshop de React desde cero y que más gente pueda aprender.
-
-### Cómo seguir desde acá?
-
-Ahora la idea es ir mejorando lo que tenemos, les tiro un par de ideas de cosas que se pueden hacer:
-
-- Mostrar más datos
-- Reacomodar cosas en el layout
-- Agregar un input y buscar el clima en distintas ciudades
-
-Y mil cosas más se pueden hacer, pero esas me parecen copadas 😄😄
+**Listo!!** Phew~ ya deberíamos tener nuestra app del clima funcionando a la perfección! En la próxima parte vamos a ver cómo usar un 'Backend-as-a-Token' (según dice en su página, yo lo veo más como un servicio de backend o cloud functions, ya son muchas cosas y me pierdo 😵) para guardar nuestra API key y subir nuestro proyecto a (por ejemplo) [Netlify](https://www.netlify.com) que es un hosting que me gusta **MUCHISIMO**
 
 [⭠ Volver a la primer parte del Workshop](Workshop.md)
 
-[⇐ Volver al principio](../README.md)
+[Vamos a subirlo! ⭢](Workshop3.md)

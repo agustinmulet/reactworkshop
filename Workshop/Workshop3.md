@@ -107,6 +107,36 @@ module.exports = function(context, req, res) {
 
 </details>
 
+Ahora nos falta conectar el Frontend a nuestro endpoint! Si vemos en la barra de abajo de todo del editor de Webtask, vamos a ver un link y un botón para copiar esa URL. El formato debería ser algo así: `https://wt-c8e20XXXXXXXXXXXXXXXXXXXXXXXa-0.sandbox.auth0-extend.com/clima`, la copiamos y vamos al Frontend de nuestra app, donde hicimos el `fetch()` y pegamos la URL nueva adentro. Guardamos el archivo y si todo sale bien, debería seguir todo funcionando, yay! 🎉
+
+<details>
+<summary>
+<b>Cómo debería quedar nuestro fetch</b>
+</summary>
+
+```javascript
+componentDidMount() {
+    fetch(
+      `https://wt-c8e20XXXXXXXXXXXXXXXXXXXXXXXa-0.sandbox.auth0-extend.com/clima`
+    )
+      .then(result => result.json())
+      .then(data => {
+        //Cambiamos la resolución del ícono del día actual para que sea más grande
+        data.current.condition.icon = data.current.condition.icon.replace(
+          "64x64",
+          "128x128"
+        );
+        this.setState({ clima: data, isLoaded: true });
+      });
+}
+```
+
+</details>
+
+Ahora nos queda el último paso, subir nuestro proyecto a algún lado para poder mostrarlo 😉
+
+---
+
 **Yapa:** Si quieren que la cloud function les quede como una [API REST](https://juanda.gitbooks.io/webapps/content/api/arquitectura-api-rest.html), les dejo otro código que pueden usar para algún otro proyecto :)
 
 <details>
@@ -153,40 +183,14 @@ module.exports = function(context, req, res) {
 
 </details>
 
-Ahora nos falta conectar el Frontend a nuestro endpoint! Si vemos en la barra de abajo de todo del editor de Webtask, vamos a ver un link y un botón para copiar esa URL. El formato debería ser algo así: `https://wt-c8e20XXXXXXXXXXXXXXXXXXXXXXXa-0.sandbox.auth0-extend.com/clima`, la copiamos y vamos al Frontend de nuestra app, donde hicimos el `fetch()` y pegamos la URL nueva adentro. Guardamos el archivo y si todo sale bien, debería seguir todo funcionando, yay! 🎉
-
-<details>
-<summary>
-<b>Cómo debería quedar nuestro fetch</b>
-</summary>
-
-```javascript
-componentDidMount() {
-    fetch(
-      `https://wt-c8e20XXXXXXXXXXXXXXXXXXXXXXXa-0.sandbox.auth0-extend.com/clima`
-    )
-      .then(result => result.json())
-      .then(data => {
-        //Cambiamos la resolución del ícono del día actual para que sea más grande
-        data.current.condition.icon = data.current.condition.icon.replace(
-          "64x64",
-          "128x128"
-        );
-        this.setState({ clima: data, isLoaded: true });
-      });
-}
-```
-
-</details>
-
-Ahora nos queda el último paso, subir nuestro proyecto a algún lado para poder mostrarlo 😉
+---
 
 ## Subir nuestro proyecto a Netlify
 
 Bueno, como algunos habrán visto, casi todos mis slides y proyectos los tengo subidos a [Netlify](https://www.netlify.com), es (más que) un hosting bastante copado y facilita mucho el subir proyectos hechos por ejemplo con `create-react-app`. Tenemos dos formas de hacerlo:
 
-- Vinculando nuestro Github
-- Sin vincular nuestro Github
+- [Vinculando nuestro Github](#vinculando-nuestro-github)
+- [Sin vincular nuestro Github](#sin-vincular-nuestro-github)
 
 ### Vinculando nuestro Github
 
@@ -202,7 +206,7 @@ git push -u origin master
 Es probable que nos pida nuestro usuario y constraseña de Github, en ese caso ingresamos nuestras credenciales y si todo salió bien, ya tenemos nuestra app subida a un repo propio!
 
 Ahora resta hacer lo que dije antes, entrar con nuestro usuario a Netlify, indicarle cuál es el repositorio con nuestra app (ClimaApp si le pusieron el mismo nombre que yo), esperamos un poco que haga el deploy y ya está!
-Lo que sí, Netlify nos da un nombre raro para nuestro sitio, así que podemos ir a **Cambiando la URL**.
+Lo que sí, Netlify nos da un nombre raro para nuestro sitio, así que podemos ir a [**Cambiando la URL**](#cambiando-la-url).
 
 ### Sin vincular nuestro Github
 
@@ -210,7 +214,7 @@ Si no te gusta andar vinculando tu Github con cualquier cosa, o si no usás o no
 
 Es simple, primero nos hacemos un usuario en Netlify e ingresamos. Netlify nos recibe con un Dashboard y donde vemos un rectángulo con línea punteada que dice `Want to deploy a new site without connecting to Git? Drag and drop your site folder here` tenemos que hacer drag and drop de nuestro proyecto ya preparado para producción.
 Vamos entonces a preparar nuestro proyecto primero. Abrimos una terminal y vamos a la carpeta raíz de nuestra app, ahí ejecutamos el comando `npm build`. Si no hubo problemas, deberíamos ver una carpeta nueva llamada `public` dentro de la carpeta de nuestra app.
-Ahora es tan simple como hacer 'drag and drop' (arrastrar y soltar) esta nueva carpeta `public` que nos creó este comando, esperamos que se suba todo et voilà! Ya deberíamos tener nuestra app subida con un nombre extraño, podemos cambiarlo en la siguiente parte **Cambiando la URL**.
+Ahora es tan simple como hacer 'drag and drop' (arrastrar y soltar) esta nueva carpeta `public` que nos creó este comando, esperamos que se suba todo et voilà! Ya deberíamos tener nuestra app subida con un nombre extraño, podemos cambiarlo en la siguiente parte [**Cambiando la URL**](#cambiando-la-url).
 
 ### Cambiando la URL
 

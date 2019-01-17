@@ -1,0 +1,162 @@
+export { default as theme } from "./theme";
+import { Appear, Image, Notes } from "mdx-deck";
+
+import Iconito from "./Iconito";
+
+<Iconito icono="react" tamanio="10x" />
+
+# (Mini) Intro + Workshop
+
+# React
+
+---
+
+# Sobre mi
+
+<Image
+  src="./img/yo.jpg"
+  style={{
+    height: "300px",
+    width: "300px",
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto",
+    borderRadius: "100%"
+  }}
+/>
+
+Frontend developer
+
+<Image
+  src="./img/ewwo.png"
+  style={{
+    height: "60px",
+    width: "60%",
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginBottom: "54px"
+  }}
+/>
+
+<Iconito icono="twitter" tamanio="1x" /> @AgustinDMulet
+
+---
+
+# ¿Qué es react?
+
+- Biblioteca de frontend encargada de la "V" (Vista) del MVC
+- Basada en Componentes
+- Enfocada en JS (Angular y Vue se enfocan en HTML)
+- One-way data binding (Los datos fluyen de forma unidireccional)
+
+<Notes>
+  Es una biblioteca de Javascript para desarrollo de interfaces hecha por
+  ingenieros de Facebook en 2013 basada en componentes (codigo reutilizable).
+  Posee ventajas en performance respecto a jQuery por ejemplo gracias al virtual
+  DOM. Está enfocada por el lado de JS y no por el lado de HTML como AngularJS y
+  Vue y la data fluye de forma unidireccional, de componente padre a hijo.
+</Notes>
+
+---
+
+# Bases para entender React
+
+- Componentes
+- JSX
+- Props
+- State
+
+---
+
+### Separemos en componentes
+
+<Image
+  src="./img/Components.png"
+  style={{
+    height: "889px",
+    width: "604px",
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto"
+  }}
+/>
+
+---
+
+### Separemos en componentes
+
+<Image
+  src="./img/Components2.png"
+  style={{
+    height: "889px",
+    width: "604px",
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto"
+  }}
+/>
+
+<Notes>
+  Acá podemos observar que el componente Twit es reutilización de código, se
+  repite una y otra vez pero solamente lo escribimos una vez y después lo
+  utilizamos escribiendo su nombre en JSX.
+</Notes>
+
+---
+
+## Árbol de jerarquías
+
+<Image
+  src="./img/diagrama.png"
+  style={{
+    height: "480px",
+    width: "640px",
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto"
+  }}
+/>
+
+Donde ListadoTwits es un componente al que podemos denominar de tipo "contenedor" y Twit sería del tipo "presentacional".
+El componente "contenedor" se encarga de cómo funcionan las cosas y tienen state.
+Los componentes "presentacionales" se encarga de cómo se ven (y mostrar) las cosas, y reciben data por props.
+
+<Notes>
+  El componente de tipo contenedor se encarga de conseguir la data, en nuestro
+  caso es un arreglo con objetos tuits digamos, cada objeto tiene la data
+  necesaria para después pasarla por props a cada Twit. Por ejemplo van a tener
+  nombre de usuario, URL de imagen, texto del mensaje, etc. Qué son state y
+  props lo vamos a ver en el workshop :)
+</Notes>
+
+---
+
+## Ejemplo de componente
+
+```jsx
+import React from "react";
+
+class MensajeHola extends React.Component {
+  state = {
+    dia: "jueves"
+  };
+  render() {
+    return (
+      <div>
+        Hola {this.props.name}! Hoy es {this.state.dia}
+      </div>
+    );
+  }
+}
+
+export default MensajeHola;
+```
+
+---
+
+# ¡Gracias!
+
+### La seguimos en el repo
+
+[Repo del Workshop](https://github.com/agustinmulet/reactworkshop)

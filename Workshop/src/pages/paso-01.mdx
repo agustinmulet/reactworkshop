@@ -24,9 +24,10 @@ para cosas personales.
 Bueno, repasamos antes de comenzar, deberíamos tener:
 
 - Todo el código del archivo
-  [`templates/template.css`](../templates/template.css) en nuestro ->
-  `src/App.css`
-- Todo el código del archivo [`templates/template.js`](../templates/template.js)
+  [`template.css`](https://github.com/agustinmulet/reactworkshop/blob/master/templates/template.css)
+  en nuestro -> `src/App.css`
+- Todo el código del archivo
+  [`template.js`](https://github.com/agustinmulet/reactworkshop/blob/master/templates/template.js)
   en nuestro -> `src/App.js`
 - Nuestra API Key de Apixu, la podemos ver en la página de Apixu en el
   [Dashboard](https://www.apixu.com/my/)
@@ -119,7 +120,7 @@ de forma más prolija, utilizando
 lo cual quedaría de la siguiente manera:
 
 ```javascript
-`https://api.apixu.com/v1/forecast.json?key=${
+;`https://api.apixu.com/v1/forecast.json?key=${
   process.env.REACT_APP_API_KEY
 }&q=Buenos+Aires&days=6`
 ```
@@ -198,7 +199,7 @@ class App extends Component {
 
 Vamos a analizar un poco lo que hicimos en el método, primero hicimos el
 [fetch](https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Utilizando_Fetch)
-\(el link es a la documentación para ampliar\) y esto nos retorna un objeto
+ \(el link es a la documentación para ampliar\) y esto nos retorna un objeto
 Promise, es una promesa de la que vamos a obtener nuestros datos. Utilizando
 programación funcional con _function chaining_, podemos decir que `then`
 \(entonces\), una vez obtenida la `response` \(respuesta\), la retorne en
@@ -298,7 +299,6 @@ recibida y listo, ya nos queda todo más lindo y más mejor.
 
 Una vez que terminamos con la parte de arriba, debería quedarnos algo así
 nuestro `App.js`:
-
 
 <Tabs>
 <TabList>

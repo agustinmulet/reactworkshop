@@ -24,10 +24,10 @@ para cosas personales.
 Bueno, repasamos antes de comenzar, deberíamos tener:
 
 - Todo el código del archivo
-  [`template.css`](https://github.com/agustinmulet/reactworkshop/blob/master/templates/template.css)
+  [`template.css` (click para acceder al archivo)](https://github.com/agustinmulet/reactworkshop/blob/master/templates/template.css)
   en nuestro -> `src/App.css`
 - Todo el código del archivo
-  [`template.js`](https://github.com/agustinmulet/reactworkshop/blob/master/templates/template.js)
+  [`template.js` (click para acceder al archivo)](https://github.com/agustinmulet/reactworkshop/blob/master/templates/template.js)
   en nuestro -> `src/App.js`
 - Nuestra API Key de Apixu, la podemos ver en la página de Apixu en el
   [Dashboard](https://www.apixu.com/my/)
@@ -120,7 +120,7 @@ de forma más prolija, utilizando
 lo cual quedaría de la siguiente manera:
 
 ```javascript
-;`https://api.apixu.com/v1/forecast.json?key=${
+`https://api.apixu.com/v1/forecast.json?key=${
   process.env.REACT_APP_API_KEY
 }&q=Buenos+Aires&days=6`
 ```
@@ -199,7 +199,7 @@ class App extends Component {
 
 Vamos a analizar un poco lo que hicimos en el método, primero hicimos el
 [fetch](https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Utilizando_Fetch)
- \(el link es a la documentación para ampliar\) y esto nos retorna un objeto
+\(el link es a la documentación para ampliar\) y esto nos retorna un objeto
 Promise, es una promesa de la que vamos a obtener nuestros datos. Utilizando
 programación funcional con _function chaining_, podemos decir que `then`
 \(entonces\), una vez obtenida la `response` \(respuesta\), la retorne en
@@ -240,7 +240,7 @@ recibimos en el estado, así que les dejo un rato para ir acomodando toda la dat
 en la parte de arriba de nuestro componente... ... ... Listo? Ahhh te tira
 errores? `undefined` por todos lados? _Bienvenido/a a Javascript_ 🤣🤣 Nah, para
 evitar estas cosas existe algo súper útil que es el **conditional rendering**
-\([link a la docu](https://reactjs.org/docs/conditional-rendering.html)\), donde
+\([link a la docu](https://es.reactjs.org/docs/conditional-rendering.html)\), donde
 le decimos que renderice cuando ya nuestra data esté "fetcheada" y disponible.
 Esto lo logramos con un valor booleano \(true o false\) en el estado del
 componente que debemos alterar una vez que terminemos con el fetch.

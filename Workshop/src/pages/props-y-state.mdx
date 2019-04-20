@@ -25,7 +25,8 @@ y no sobreescribir el dato que recibe. \(Son read-only\)
 
 Como vemos, las props son externas a nuestro componente. \(Imagen tomada
 prestada de
-[este post](https://code.tutsplus.com/tutorials/stateful-vs-stateless-functional-components-in-react--cms-29541)\)
+[este post](https://code.tutsplus.com/tutorials/stateful-vs-stateless-functional-components-in-react--cms-29541). 
+**Traducción del texto:** Las props se reciben únicamente de un componente padre y son de **sólo lectura**\)
 
 Entonces probemos con lo que ya tenemos, hagamos que nuestro componente `Saludo`
 diga 'Hola' y nuestro nombre. Entonces, donde utilizamos nuestro componente,
@@ -123,7 +124,8 @@ actualizar el estado, el virtual DOM y el DOM por nosotros.
 
 Y acá vemos que el State es interno de cada componente. (Imagen tomada prestada
 de
-[este post](https://code.tutsplus.com/tutorials/stateful-vs-stateless-functional-components-in-react--cms-29541))
+[este post](https://code.tutsplus.com/tutorials/stateful-vs-stateless-functional-components-in-react--cms-29541). 
+**Traducción del texto:** El state se usa para comunicación interna dentro de un componente)
 
 Cada componente no sabe si el otro componente \(padre, hijo, hermano,
 tátara-tátara-abuelo\(??\)\) tiene estado o no, pero sí puede recibir ese estado
@@ -240,7 +242,7 @@ handleClick() {
 ```
 
 Tengamos en cuenta que
-[existen varias formas de manejar eventos en React](https://reactjs.org/docs/handling-events.html),
+[existen varias formas de manejar eventos en React](https://es.reactjs.org/docs/handling-events.html),
 recomiendo usar la que vemos en este tutorial ya que no depende de si estamos en
 create-react-app o donde sea, debería funcionar donde sea que estemos usando
 React. Bien, ahora, dónde va esta función? Adentro de nuestro componente, al

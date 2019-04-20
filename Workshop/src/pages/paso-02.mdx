@@ -4,8 +4,8 @@ path: /paso-02/
 index: 4
 ---
 
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
-import 'react-tabs/style/react-tabs.css'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 ## Dividamos en componentes
 
@@ -16,7 +16,7 @@ pensamos todos lo mismo, lo decimos a la vez? 1, 2... ~~El contai...~~ La
 entonces es nuestro candidato perfecto para aislar, luego se puede pasar otras
 cosas a componentes, la especificación ya queda en cada uno según la
 modularización que quiera realizar (como por ejemplo, el div con clase "minmax"
-también se repite bastante, no? ;D) Antes de hacer el componente, tenemos que
+también se repite bastante, no? 😏) Antes de hacer el componente, tenemos que
 analizar lo que tenemos y cómo lo queremos mostrar. Qué tenemos? Nuestra `card`:
 
 ```jsx
@@ -173,11 +173,12 @@ cuadrito de acá abajo.
 </Tabs>
 
 Esa es mi solución, ah, qué? Que qué es `getWeekDay()`? Es una función que
-~~hice yo ;)~~ me pasó [Goncy](https://twitter.com/goncy) para mostrar el día de
+~~hice yo 😛~~ me pasó [Goncy](https://twitter.com/goncy) para mostrar el día de
 la semana calculando desde la fecha en formato UNIX que nos proveen en
 `date_epoch`. Para hacerla es como hicimos antes cuando vimos
-[Props y State](https://agustinmulet.github.io/reactworkshop/props-y-state/), pero debemos definir antes un arreglo con los
-días de la semana, el cual va por fuera de la definición de nuestro componente.
+[Props y State](https://agustinmulet.github.io/reactworkshop/props-y-state/),
+pero debemos definir antes un arreglo con los días de la semana, el cual va por
+fuera de la definición de nuestro componente.
 
 ```jsx
 import React, { Component } from "react";
@@ -208,10 +209,12 @@ class App extends Component {
 **Algo para tener en cuenta cuando iteramos:** Si vemos la consola, React nos
 dice que cada hijo en un array o iterador debe tener una prop única que sea
 `key` (`clave`), tiene que ser un valor único que no se repita dentro del array.
-**Pasar el id como key se considera malas prácticas** ya que si eliminamos o
-movemos datos dentro del array, ese id puede ir cambiando. En nuestro caso la
-`key` puede ser el día de la semana, sea en UNIX (`date_epoch`) o en string
-(`date`), entonces pasamos eso como prop a lo que se itera, nos quedaría:
+**Pasar el índice como key se considera malas prácticas** ya que si eliminamos o
+movemos datos dentro del array, ese índice va cambiando, algo similar puede pasar 
+utilizando el id como key si no lo manejamos bien. En nuestro caso la
+`key` puede ser el día de la semana que sabemos que va a ser único, sea en formato 
+UNIX (`date_epoch`) o en string (`date`), entonces pasamos eso como prop a lo que 
+se itera, nos quedaría:
 
 `<div className="card" key={dia.date}>`
 
@@ -607,8 +610,8 @@ export default Card
 </Tabs>
 
 **Listo!!** Phew~ ya deberíamos tener nuestra app del clima funcionando a la
-perfección! En la próxima parte vamos a ver cómo usar un 'Backend-as-a-Token'
-(según dice en su página, yo lo veo más como un servicio de backend o cloud
-functions, ya son muchas cosas y me pierdo 😵) para guardar nuestra API key y
-subir nuestro proyecto a (por ejemplo) [Netlify](https://www.netlify.com) que es
-un hosting que me gusta **MUCHISIMO**
+perfección! En la próxima parte vamos a ver cómo usar
+[Netlify](https://www.netlify.com) que es un servicio que me gusta
+**MUCHISIMO**, no solamente proveen hosting sino que también proveen Netlify
+Functions, que son lambda functions y funcionan como una especie de backend para
+nuestra app! 😊

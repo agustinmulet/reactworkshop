@@ -64,12 +64,12 @@ function NavButtons({ next }) {
             <>
               {prevLink && (
                 <NavButton to={prevLink.frontmatter.path}>
-                  <FadedText>ATRAS</FadedText> {prevLink.frontmatter.title}
+                  <FadedText>ATRÁS</FadedText> {prevLink.frontmatter.title}
                 </NavButton>
               )}
               {nextLink && (
                 <NavButton to={nextLink.frontmatter.path} data-next>
-                  <FadedText>PROX</FadedText> {nextLink.frontmatter.title}
+                  <FadedText>PRÓX</FadedText> {nextLink.frontmatter.title}
                 </NavButton>
               )}
             </>

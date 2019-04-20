@@ -4,15 +4,15 @@ path: /paso-01/
 index: 3
 ---
 
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
-import 'react-tabs/style/react-tabs.css'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 Buenísimo, ya tenemos una idea de cómo hacer los componentes de nuestra app del
 clima. Vamos al archivo `templates/template.css` donde va a estar el css de la
 app ya preparado, lo abrimos y copiamos todo el contenido y lo pegamos en
 nuestro `src/App.css` ya existente. Hagamos lo mismo con el archivo
 `templates/template.js` y `src/App.js` donde ya van a estar preparadas las
-clases \(`className` en React, recuerdan? ;P\) con los estilos recién copiados.
+clases \(`className` en React, recuerdan? 😜\) con los estilos recién copiados.
 Una vez que reemplazamos el código en nuestros archivos App.js y App.css vamos a
 generar una API key para poder utilizar el servicio de la API del clima de
 [Apixu](https://www.apixu.com), la página para registrarse es
@@ -24,10 +24,10 @@ para cosas personales.
 Bueno, repasamos antes de comenzar, deberíamos tener:
 
 - Todo el código del archivo
-  [`template.css` (click para acceder al archivo)](https://github.com/agustinmulet/reactworkshop/blob/master/templates/template.css)
+  [`template.css` **(click para acceder al archivo)**](https://github.com/agustinmulet/reactworkshop/blob/master/templates/template.css)
   en nuestro -> `src/App.css`
 - Todo el código del archivo
-  [`template.js` (click para acceder al archivo)](https://github.com/agustinmulet/reactworkshop/blob/master/templates/template.js)
+  [`template.js` **(click para acceder al archivo)**](https://github.com/agustinmulet/reactworkshop/blob/master/templates/template.js)
   en nuestro -> `src/App.js`
 - Nuestra API Key de Apixu, la podemos ver en la página de Apixu en el
   [Dashboard](https://www.apixu.com/my/)
@@ -60,7 +60,7 @@ y si vamos a esa dirección en el navegador \(con nuestra key pegada\) vamos a
 ver un JSON con toda la data que necesitamos \(si se veo medio feo podemos
 copiar y pegar el texto del JSON en [JSON Formatter](https://jsonformatter.org)
 y va a quedar más claro cómo están compuestos los objetos, y en la
-[docu de apixu](https://www.apixu.com/doc/forecast.aspx) explica qué es cada
+[docu de apixu \(en inglés\)](https://www.apixu.com/doc/forecast.aspx) explica qué es cada
 parte del objeto, aunque vamos a ir viendo qué necesitamos para cada parte de
 nuestra app\) Como podemos ver, estamos buscando el clima en la ciudad de Buenos
 Aires, pero cambien el texto por su ciudad o por la que quieran buscar en el
@@ -75,6 +75,7 @@ hacer distintas cosas en distintos momentos de la vida de nuestro componente. En
 este diagrama podemos verlos bien y cuándo se ejecuta cada uno:
 
 ![Ciclos de vida de un método](../images/diagrama.png 'Ciclos de vida de un método')
+
 [Diagrama de Ciclos de vida de componentes](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 
 El método donde vamos a hacer el fetch hacia la API de apixu es
@@ -98,9 +99,10 @@ en el mundo exterior. Entonces vamos a aprovechar una de las bondades que nos da
 `create-react-app` y vamos a generar un archivo de desarrollo local para usar
 nuestra API key sin tener que luego preocuparnos por la seguridad de la misma si
 subimos nuestro código a github por ejemplo. Según
-[la documentación](https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables),
+[la documentación \(en inglés\)](https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables),
 debemos crear un archivo en la raíz de nuestro proyecto \(sería junto al
 package.json, el .gitignore, etc.\) y lo vamos a llamar `.env.development.local`
+
 \(sí, comienza con un punto, al igual que el .gitignore\). Dentro debemos
 definir nuestra variable de entorno, que por convención se escriben en
 mayúsculas y según la documentación de create-react-app, **DEBE** comenzar con
@@ -108,8 +110,8 @@ mayúsculas y según la documentación de create-react-app, **DEBE** comenzar co
 cuando la querramos usar. Entonces dentro del archivo debemos tener una línea
 como la siguiente:
 
-```
-REACT_APP_API_KEY="0df7569d7af3432a93217005XXXXXXX"
+```javascript
+REACT_APP_API_KEY = '0df7569d7af3432a93217005XXXXXXX'
 ```
 
 Ya con tener esa línea podemos usar esta variable para hacer el fetch, para
@@ -198,15 +200,15 @@ class App extends Component {
 ```
 
 Vamos a analizar un poco lo que hicimos en el método, primero hicimos el
-[fetch](https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Utilizando_Fetch)
-\(el link es a la documentación para ampliar\) y esto nos retorna un objeto
+[fetch](https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Utilizando_Fetch) \(el link es a la documentación para ampliar\) 
+y esto nos retorna un objeto
 Promise, es una promesa de la que vamos a obtener nuestros datos. Utilizando
-programación funcional con _function chaining_, podemos decir que `then`
-\(entonces\), una vez obtenida la `response` \(respuesta\), la retorne en
+programación funcional con _function chaining_, podemos decir que `then` \(entonces\),
+una vez obtenida la `response` \(respuesta\), la retorne en
 formato JSON, usando el método `json()`. Luego siguiendo con la cadena de
 funciones, ese JSON va a caer en el siguiente `then` y lo recibimos en
 `jsonData`, actualizando luego el estado y guardando todo lo recibido en nuestro
-estado, en `clima`. Ah, y no intenten usar esa key, no funciona 😜
+estado, en `clima`. Ah, y no intenten usar esa API key, no funciona 😜
 
 Buenísimo, ya tenemos los datos el estado de nuestro componente, ahora nos falta
 empezar a usarlos!
@@ -239,11 +241,10 @@ Esto debemos insertarlo en el `render()` de nuestro componente, antes del
 recibimos en el estado, así que les dejo un rato para ir acomodando toda la data
 en la parte de arriba de nuestro componente... ... ... Listo? Ahhh te tira
 errores? `undefined` por todos lados? _Bienvenido/a a Javascript_ 🤣🤣 Nah, para
-evitar estas cosas existe algo súper útil que es el **conditional rendering**
-\([link a la docu](https://es.reactjs.org/docs/conditional-rendering.html)\), donde
-le decimos que renderice cuando ya nuestra data esté "fetcheada" y disponible.
-Esto lo logramos con un valor booleano \(true o false\) en el estado del
-componente que debemos alterar una vez que terminemos con el fetch.
+evitar estas cosas existe algo súper útil que es el **conditional rendering** \([link a la docu](https://es.reactjs.org/docs/conditional-rendering.html)\),
+donde le decimos que renderice cuando ya nuestra data esté "fetcheada" y
+disponible. Esto lo logramos con un valor booleano \(true o false\) en el estado
+del componente que debemos alterar una vez que terminemos con el fetch.
 
 Entonces agregamos en el estado `isLoaded: false` para indicar que todavía no
 está cargada nuestra data. Luego en el `fetch()` actualizamos nuestro estado e

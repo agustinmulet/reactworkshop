@@ -4,8 +4,7 @@ path: /paso-03/
 index: 5
 ---
 
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@reach/tabs"
 
 ## Usando Netlify para nuestro proyecto
 
@@ -157,9 +156,12 @@ Nos debería haber quedado algo así:
     <Tab>getWeather.js</Tab>
 </TabList>
 
+<TabPanels>
+
 <TabPanel>
     Para ver la solución de cada archivo hacé click en las pestañas 👆
 </TabPanel>
+
 <TabPanel>
 
 ```javascript
@@ -188,6 +190,7 @@ exports.handler = (event, context, callback) => {
 ```
 
 </TabPanel>
+</TabPanels>
 </Tabs>
 
 Ahora nos falta conectar el Frontend a nuestro endpoint! Esto nos lo simplifica 
@@ -202,9 +205,12 @@ pegamos la URL nueva adentro. Guardamos el archivo y seguimos, vamos a probar si
     <Tab>Cómo debería quedar nuestro fetch</Tab>
 </TabList>
 
+<TabPanels>
+
 <TabPanel>
     Para ver la solución de cada archivo hacé click en las pestañas 👆
 </TabPanel>
+
 <TabPanel>
 
 ```javascript
@@ -225,6 +231,7 @@ componentDidMount() {
 ```
 
 </TabPanel>
+</TabPanels>
 </Tabs>
 
 ## Haciendo deploy de nuestra app

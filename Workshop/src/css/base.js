@@ -183,9 +183,58 @@ export default createGlobalStyle`
     margin-top: 5px;
   }
 
-  .react-tabs {
+  [data-reach-tabs] {
     padding: 14px;
     box-shadow: 0.055rem 0.055rem 1.11rem rgba(20, 20, 20, 0.27);
     margin-bottom: 24px;
+    -webkit-tap-highlight-color: transparent;
   }
+  
+  [data-reach-tab-list] {
+    border-bottom: 1px solid #aaa;
+    margin: 0 0 10px;
+    padding: 0;
+  }
+  
+  [data-reach-tab] {
+    display: inline-block;
+    border: 1px solid #aaa;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    bottom: -1px;
+    position: relative;
+    list-style: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    background: #aaa;
+    margin-left: 4px;
+  }
+  
+  [data-reach-tab][data-selected] {
+    background: #fff;
+    border-color: #aaa;
+    color: black;
+  }
+  
+  [data-reach-tab]--disabled {
+    color: GrayText;
+    cursor: default;
+  }
+  
+  [data-reach-tab]:focus {
+    box-shadow: 0 0 5px hsl(208, 99%, 50%);
+    border-color: hsl(208, 99%, 50%);
+    outline: none;
+  }
+  
+  [data-reach-tab]:focus:after {
+    content: "";
+    position: absolute;
+    height: 5px;
+    left: -4px;
+    right: -4px;
+    bottom: -5px;
+    background: #fff;
+  }
+    
 `

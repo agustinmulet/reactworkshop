@@ -22,6 +22,7 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`,
+    //`gatsby-transformer-remark`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
@@ -48,28 +49,19 @@ module.exports = {
     // 'gatsby-plugin-offline',
     `gatsby-plugin-styled-components`,
     {
-      resolve: `gatsby-mdx`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
         defaultLayouts: {
           default: require.resolve('./src/components/Layout.js'),
         },
-        gatsbyRemarkPlugins: [
-          {
-            resolve: `gatsby-remark-prismjs`,
-            options: {
-              classPrefix: 'language-',
-              inlineCodeMarker: null,
-              aliases: {},
-            },
+        gatsbyRemarkPlugins: [{
+          resolve: `gatsby-remark-prismjs`,
+          options: {
+            classPrefix: 'language-',
+            inlineCodeMarker: null,
+            aliases: {},
           },
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 1035,
-              sizeByPixelDensity: true,
-            },
-          },
-        ],
+        }],
       },
     },
     {

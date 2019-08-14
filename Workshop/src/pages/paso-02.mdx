@@ -4,8 +4,7 @@ path: /paso-02/
 index: 4
 ---
 
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@reach/tabs"
 
 ## Dividamos en componentes
 
@@ -136,9 +135,12 @@ cuadrito de acá abajo.
     <Tab>div className="bottom"</Tab>
 </TabList>
 
+<TabPanels>
+
 <TabPanel>
     Para ver la solución de cada archivo hacé click en las pestañas 👆
 </TabPanel>
+
 <TabPanel>
 
 ```jsx
@@ -170,6 +172,7 @@ cuadrito de acá abajo.
 ```
 
 </TabPanel>
+</TabPanels>
 </Tabs>
 
 Esa es mi solución, ah, qué? Que qué es `getWeekDay()`? Es una función que
@@ -231,9 +234,12 @@ Ya está, tenemos todo funcional y todo lindo, ahora nos falta algo clave,
     <Tab>App.js</Tab>
 </TabList>
 
+<TabPanels>
+
 <TabPanel>
     Para ver la solución de cada archivo hacé click en las pestañas 👆
 </TabPanel>
+
 <TabPanel>
 
 ```jsx
@@ -340,6 +346,7 @@ export default App
 ```
 
 </TabPanel>
+</TabPanels>
 </Tabs>
 
 Ahora es cuando uno decide qué tanto componentizar, qué tan atómico ser. Podemos
@@ -365,9 +372,12 @@ no tenemos que modificar nada en nuestro JSX 😉). Nos debería quedar así:
     <Tab>Top.js</Tab>
 </TabList>
 
+<TabPanels>
+
 <TabPanel>
     Para ver la solución de cada archivo hacé click en las pestañas 👆
 </TabPanel>
+
 <TabPanel>
 
 ```jsx
@@ -430,6 +440,7 @@ export default Top;
 ```
 
 </TabPanel>
+</TabPanels>
 </Tabs>
 
 Ahora les queda como tarea hacer lo mismo con el componente de abajo, al que
@@ -449,6 +460,8 @@ probar ehhhhh)
     <Tab>Bottom.js</Tab>
     <Tab>Card.js</Tab>
 </TabList>
+
+<TabPanels>
 
 <TabPanel>
     Para ver la solución de cada archivo hacé click en las pestañas 👆
@@ -607,6 +620,7 @@ export default Card
 ```
 
 </TabPanel>
+</TabPanels>
 </Tabs>
 
 **Listo!!** Phew~ ya deberíamos tener nuestra app del clima funcionando a la

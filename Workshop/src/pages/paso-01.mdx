@@ -4,8 +4,8 @@ path: /paso-01/
 index: 3
 ---
 
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@reach/tabs"
+import Image from '../components/Image'
 
 Buenísimo, ya tenemos una idea de cómo hacer los componentes de nuestra app del
 clima. Vamos al archivo `templates/template.css` donde va a estar el css de la
@@ -74,7 +74,7 @@ methods_\) de nuestros componentes, son parte de React y son para que podamos
 hacer distintas cosas en distintos momentos de la vida de nuestro componente. En
 este diagrama podemos verlos bien y cuándo se ejecuta cada uno:
 
-![Ciclos de vida de un método](../images/diagrama.png 'Ciclos de vida de un método')
+<Image imgName="diagrama.png" alt="Ciclos de vida de un método" />
 
 [Diagrama de Ciclos de vida de componentes](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 
@@ -307,9 +307,12 @@ nuestro `App.js`:
     <Tab>App.js</Tab>
 </TabList>
 
+<TabPanels>
+
 <TabPanel>
     Para ver la solución de cada archivo hacé click en las pestañas 👆
 </TabPanel>
+
 <TabPanel>
 
 ```jsx
@@ -468,6 +471,9 @@ export default App
 ```
 
 </TabPanel>
+
+</TabPanels>
+
 </Tabs>
 
 Lo tenés igual? Parecido? Bueno, si ves que te trabaste con algo o no te sale,
@@ -477,7 +483,7 @@ saliendo 😁
 Listo, ya tenemos la parte de arriba andando **perfectamente** y ahora vamos a
 atacar la parte de abajo. Analicémosla un poco antes...
 
-![alt text](../images/top.png 'Parte de arriba terminada')
+<Image imgName="top.png" alt="Parte de arriba terminada" />
 
 La idea de React y los componentes es tener partes reutilizables de código,
 entonces, qué vemos que se repite y pueda reutilizarse en nuestro componente?

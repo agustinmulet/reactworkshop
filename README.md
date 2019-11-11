@@ -6,6 +6,16 @@ En este workshop, vamos a aprender y entender las bases de React haciendo una ap
 
 ---
 
+## Mejoras a hacer
+
+- [x] Diseño responsive
+- [ ] Crear sandbox para explicar de forma más gráfica Props y State
+- [ ] Controlled y Uncontrolled Inputs
+- [ ] Explicar Forms
+- [ ] Hooks
+
+---
+
 ## Créditos
 
 Fuentes usadas para hacer este workshop:

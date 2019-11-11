@@ -122,8 +122,8 @@ de forma más prolija, utilizando
 [template strings de ES6](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/template_strings),
 lo cual quedaría de la siguiente manera:
 
-```ts
-;`https://api.weatherbit.io/v2.0/forecast/daily?city=Buenos+Aires,Argentina&key=${process.env.REACT_APP_API_KEY}&days=7`
+```yaml
+`https://api.weatherbit.io/v2.0/forecast/daily?city=Buenos+Aires,Argentina&key=${process.env.REACT_APP_API_KEY}&days=7`
 ```
 
 Donde podemos observar que el string en su totalidad va a estar envuelto entre
@@ -292,6 +292,7 @@ render() {
           Cargando...
       </div>
     )
+}
 ```
 
 Bueno, el tema de la imagen del clima de arriba es un poco complejo porque

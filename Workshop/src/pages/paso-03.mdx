@@ -227,20 +227,20 @@ Guardamos el archivo y seguimos, vamos a probar si todo funciona!
 
 ```javascript
 componentDidMount() {
-    fetch(
-      `/.netlify/functions/getWeather`
-    )
-      .then(result => result.json())
-      .then(jsonData => {
-        const current = jsonData.data.shift()
-        const forecast = jsonData.data
-        const location = {
-          city_name: jsonData.city_name,
-          country_code: jsonData.country_code,
-          state_code: jsonData.state_code,
-        }
-        this.setState({ current, forecast, location, isLoaded: true })
-      })
+  fetch(
+    `/.netlify/functions/getWeather`
+  )
+  .then(result => result.json())
+  .then(jsonData => {
+    const current = jsonData.data.shift()
+    const forecast = jsonData.data
+    const location = {
+      city_name: jsonData.city_name,
+      country_code: jsonData.country_code,
+      state_code: jsonData.state_code,
+    }
+    this.setState({ current, forecast, location, isLoaded: true })
+  })
 }
 ```
 

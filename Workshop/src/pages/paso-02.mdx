@@ -4,7 +4,7 @@ path: /paso-02/
 index: 4
 ---
 
-import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@reach/tabs"
+import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@reach/tabs'
 
 ## Dividamos en componentes
 
@@ -36,39 +36,51 @@ analizar lo que tenemos y cómo lo queremos mostrar. Qué tenemos? Nuestra `card
 </div>
 ```
 
-Y un array `forecastday` (en `forecast`) con los 6 días que pedimos a la API:
+Y un array `forecast` con los 6 días restantes que le pedimos a la API:
 
 ```json
 {
-  "date": "2018-11-14",
-  "date_epoch": 1542153600,
-  "day": {
-    "maxtemp_c": 26.1,
-    "maxtemp_f": 79,
-    "mintemp_c": 19.7,
-    "mintemp_f": 67.5,
-    "avgtemp_c": 21.2,
-    "avgtemp_f": 70.1,
-    "maxwind_mph": 18.1,
-    "maxwind_kph": 29.2,
-    "totalprecip_mm": 0.2,
-    "totalprecip_in": 0.01,
-    "avgvis_km": 19.1,
-    "avgvis_miles": 11,
-    "avghumidity": 54,
-    "condition": {
-      "text": "Patchy rain possible",
-      "icon": "//cdn.apixu.com/weather/64x64/day/176.png",
-      "code": 1063
-    },
-    "uv": 10.6
+  "moonrise_ts": 1573778575,
+  "wind_cdir": "SSE",
+  "rh": 65,
+  "pres": 1008.87,
+  "high_temp": 26.7,
+  "sunset_ts": 1573770827,
+  "ozone": 279.889,
+  "moon_phase": 0.841582,
+  "wind_gust_spd": 12.1112,
+  "snow_depth": 0,
+  "clouds": 48,
+  "ts": 1573700460,
+  "sunrise_ts": 1573720547,
+  "app_min_temp": 19.6,
+  "wind_spd": 3.9362,
+  "pop": 70,
+  "wind_cdir_full": "south-southeast",
+  "slp": 1010.46,
+  "valid_date": "2019-11-14",
+  "app_max_temp": 27.1,
+  "vis": 21.7656,
+  "dewpt": 15.2,
+  "snow": 0,
+  "uv": 8.43664,
+  "weather": {
+    "icon": "t02d",
+    "code": 201,
+    "description": "Thunderstorm with rain"
   },
-  "astro": {
-    "sunrise": "05:42 AM",
-    "sunset": "07:37 PM",
-    "moonrise": "11:23 AM",
-    "moonset": "12:51 AM"
-  }
+  "wind_dir": 168,
+  "max_dhi": null,
+  "clouds_hi": 46,
+  "precip": 7.0625,
+  "low_temp": 19.4,
+  "max_temp": 27.1,
+  "moonset_ts": 1573731951,
+  "datetime": "2019-11-14",
+  "temp": 22.6,
+  "min_temp": 19.2,
+  "clouds_mid": 19,
+  "clouds_low": 5
 }
 ```
 
@@ -93,8 +105,8 @@ class App extends Component {
   /* [...] */
 
   render() {
-    const { location, current, forecast } = this.state.clima;
-    return this.state.isLoaded ? (
+    const { location, current, forecast, isLoaded } = this.state;
+    return isLoaded ? (
       <div className="App">
         <div className="container">
           <div className="top">
@@ -104,7 +116,7 @@ class App extends Component {
           </div>
           <div className="bottom">
             {/*Usamos map() donde va el código que vamos a repetir*/}
-            {forecast.forecastday.map(dia => {
+            {forecast.map(dia => {
               /* en 'dia' vamos a tener cada objeto del array */
               return(
                 /*
@@ -127,7 +139,8 @@ export default App;
 
 Ya tenemos entonces nuestro código a repetir, la data en un array y nuestra
 herramienta para iterar, prueben hacerlo y cualquier cosa dejo la solución en el
-cuadrito de acá abajo.
+cuadrito de acá abajo. Pista: Tiene mucha similitud con lo que hicimos en el
+Paso 01, presten atención a la parte de la imagen 😉
 
 <Tabs>
 <TabList>
@@ -138,31 +151,31 @@ cuadrito de acá abajo.
 <TabPanels>
 
 <TabPanel>
-    Para ver la solución de cada archivo hacé click en las pestañas 👆
+  Para ver la solución de cada archivo hacé click en las pestañas 👆
 </TabPanel>
 
 <TabPanel>
 
 ```jsx
 <div className="bottom">
-  {forecast.forecastday.map(dia => {
+  {forecast.map(dia => {
     return (
       <div className="card">
-        <h5>{this.getWeekDay(dia.date_epoch)}</h5>
-        <h6>{dia.date}</h6>
+        <h5>{this.getWeekDay(dia.datetime)}</h5>
+        <h6>{dia.valid_date}</h6>
         <img
-          src={dia.day.condition.icon}
+          src={require(`./icons/${dia.weather.icon}.png`)}
           alt="Clima diario"
           className="imagebottom"
         />
         <div className="minmax">
           <p>
             <span className="tempmax" />
-            {parseInt(dia.day.maxtemp_c)}
+            {parseInt(dia.max_temp)}
           </p>
           <p>
             <span className="tempmin" />
-            {parseInt(dia.day.mintemp_c)}
+            {parseInt(dia.min_temp)}
           </p>
         </div>
       </div>
@@ -177,17 +190,17 @@ cuadrito de acá abajo.
 
 Esa es mi solución, ah, qué? Que qué es `getWeekDay()`? Es una función que
 ~~hice yo 😛~~ me pasó [Goncy](https://twitter.com/goncy) para mostrar el día de
-la semana calculando desde la fecha en formato UNIX que nos proveen en
-`date_epoch`. Para hacerla es como hicimos antes cuando vimos
+la semana calculando desde la fecha en string que nos proveen en `datetime`.
+Para hacer la función es como hicimos antes cuando vimos `handleClick` en
 [Props y State](https://agustinmulet.github.io/reactworkshop/props-y-state/),
-pero debemos definir antes un arreglo con los días de la semana, el cual va por
+pero debemos definir antes un array con los días de la semana, el cual va por
 fuera de la definición de nuestro componente.
 
 ```jsx
 import React, { Component } from "react";
 import "./App.css";
 
-/* Generamos un arreglo con los días de la semana */
+/* Generamos un array con los días de la semana */
 const semana = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado",
 "Domingo"]
 
@@ -195,7 +208,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clima: {},
+      current: {},
+      forecast: [],
+      location: {},
       isLoaded: false
     };
     //No hay que olvidarse del binding
@@ -203,7 +218,7 @@ class App extends Component {
   }
 
   getWeekDay(fecha) {
-    return semana[new Date(fecha * 1000).getDay()];
+    return semana[new Date(fecha).getDay()];
   }
   {/* [...] */}
 }
@@ -213,13 +228,12 @@ class App extends Component {
 dice que cada hijo en un array o iterador debe tener una prop única que sea
 `key` (`clave`), tiene que ser un valor único que no se repita dentro del array.
 **Pasar el índice como key se considera malas prácticas** ya que si eliminamos o
-movemos datos dentro del array, ese índice va cambiando, algo similar puede pasar 
-utilizando el id como key si no lo manejamos bien. En nuestro caso la
-`key` puede ser el día de la semana que sabemos que va a ser único, sea en formato 
-UNIX (`date_epoch`) o en string (`date`), entonces pasamos eso como prop a lo que 
-se itera, nos quedaría:
+movemos datos dentro del array, ese índice va cambiando, algo similar puede
+pasar utilizando el id como key _si no lo manejamos bien_. En nuestro caso la
+`key` puede ser el día de la semana que sabemos que va a ser único, entonces
+pasamos eso como prop a lo que se itera, nos quedaría:
 
-`<div className="card" key={dia.date}>`
+`<div className="card" key={dia.valid_date}>`
 
 También vemos que las fechas máxima y mínima desde la API nos la proveen como un
 número con decimal, al utilizar `parseInt()` obtenemos la parte entera del
@@ -237,7 +251,7 @@ Ya está, tenemos todo funcional y todo lindo, ahora nos falta algo clave,
 <TabPanels>
 
 <TabPanel>
-    Para ver la solución de cada archivo hacé click en las pestañas 👆
+  Para ver la solución de cada archivo hacé click en las pestañas 👆
 </TabPanel>
 
 <TabPanel>
@@ -260,74 +274,76 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      clima: {},
+      current: {},
+      forecast: [],
+      location: {},
       isLoaded: false,
     }
     this.getWeekDay = this.getWeekDay.bind(this)
   }
 
   getWeekDay(fecha) {
-    return semana[new Date(fecha * 1000).getDay()]
+    return semana[new Date(fecha).getDay()]
   }
 
   componentDidMount() {
     fetch(
-      `https://api.apixu.com/v1/forecast.json?key=${
-        process.env.REACT_APP_API_KEY
-      }&q=Buenos+Aires&days=6`
+      `https://api.weatherbit.io/v2.0/forecast/daily?city=Buenos+Aires,Argentina&key=${process.env.REACT_APP_API_KEY}&days=7`,
     )
       .then(response => response.json())
       .then(jsonData => {
-        jsonData.current.condition.icon = jsonData.current.condition.icon.replace(
-          '64x64',
-          '128x128',
-        )
-        this.setState({
-          clima: jsonData,
-          isLoaded: true,
-        })
+        const current = jsonData.data.shift()
+        const forecast = jsonData.data
+        const location = {
+          city_name: jsonData.city_name,
+          country_code: jsonData.country_code,
+          state_code: jsonData.state_code,
+        }
+        this.setState({ current, forecast, location, isLoaded: true })
       })
   }
 
   render() {
-    const { location, current, forecast } = this.state.clima
-    return this.state.isLoaded ? (
+    const { location, current, forecast, isLoaded } = this.state
+    return isLoaded ? (
       <div className="App">
         <div className="container">
           <div className="top">
             <img
-              src={current.condition.icon}
+              src={require(`./icons/${current.weather.icon}.png`)}
               alt="Clima principal"
               className="image"
             />
-            <p className="temp">{current.temp_c} °C</p>
+            <p className="temp">{current.temp} °C</p>
             <h4 className="city">
-              {location.name}, {location.region}, {location.country}
+              {location.city_name}, {location.state_code},{' '}
+              {location.country_code}
             </h4>
-            <div className="feelslike">
-              ST: {current.feelslike_c} °C, H: {current.humidity} %
+            <div className="temphr">
+              Max: {current.max_temp} °C, Min: {current.min_temp} °C, H:{' '}
+              {current.rh} %
             </div>
           </div>
 
           <div className="bottom">
-            {forecast.forecastday.map(dia => {
+            {forecast.map(dia => {
               return (
-                <div className="card" key={dia.date}>
-                  <h5>{this.getWeekDay(dia.date_epoch)}</h5>
-                  <h6>{dia.date}</h6>
+                <div className="card" key={dia.valid_date}>
+                  <h5>{this.getWeekDay(dia.datetime)}</h5>
+                  <h6>{dia.valid_date}</h6>
                   <img
-                    src={dia.day.condition.icon}
+                    src={require(`./icons/${dia.weather.icon}.png`)}
                     alt="Clima diario"
                     className="imagebottom"
                   />
                   <div className="minmax">
                     <p>
                       <span className="tempmax" />
-                      {parseInt(dia.day.maxtemp_c)}
+                      {parseInt(dia.max_temp)}
                     </p>
                     <p>
                       <span className="tempmin" />
-                      {parseInt(dia.day.mintemp_c)}
+                      {parseInt(dia.min_temp)}
                     </p>
                   </div>
                 </div>
@@ -375,7 +391,7 @@ no tenemos que modificar nada en nuestro JSX 😉). Nos debería quedar así:
 <TabPanels>
 
 <TabPanel>
-    Para ver la solución de cada archivo hacé click en las pestañas 👆
+  Para ver la solución de cada archivo hacé click en las pestañas 👆
 </TabPanel>
 
 <TabPanel>
@@ -393,8 +409,8 @@ class App extends Component {
   /* [...] */
 
   render() {
-    const { location, current, forecast } = this.state.clima;
-    return this.state.isLoaded ? (
+    const { location, current, forecast, isLoaded } = this.state;
+    return isLoaded ? (
       <div className="App">
         <div className="container">
           {/* Utilizamos nuestro componente y le pasamos props */}
@@ -424,13 +440,13 @@ const Top = (props) => {
   const { current, location } = props;
   return(
     <div className="top">
-      <img src={current.condition.icon} alt="Clima principal" className="image" />
-      <p className="temp">{current.temp_c} °C</p>
+      <img src={require(`./icons/${current.weather.icon}.png`)} alt="Clima principal" className="image" />
+      <p className="temp">{current.temp} °C</p>
       <h4 className="city">
-        {location.name}, {location.region}, {location.country}
+        {location.city_name}, {location.state_code}, {location.country_code}
       </h4>
-      <div className="feelslike">
-        ST: {current.feelslike_c} °C, H: {current.humidity} %
+      <div className="temphr">
+        Max: {current.max_temp} °C, Min: {current.min_temp} °C, H: {current.rh} %
       </div>
     </div>;
   );
@@ -479,31 +495,33 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      clima: {},
+      current: {},
+      forecast: [],
+      location: {},
       isLoaded: false,
     }
   }
 
   componentDidMount() {
     fetch(
-      `https://api.apixu.com/v1/forecast.json?key=${
-        process.env.REACT_APP_API_KEY
-      }&q=Buenos+Aires&days=6`,
+      `https://api.weatherbit.io/v2.0/forecast/daily?city=Buenos+Aires,Argentina&key=${process.env.REACT_APP_API_KEY}&days=7`,
     )
-      .then(result => result.json())
-      .then(data => {
-        //Cambiamos la resolución del ícono del día actual para que sea más grande
-        data.current.condition.icon = data.current.condition.icon.replace(
-          '64x64',
-          '128x128',
-        )
-        this.setState({ clima: data, isLoaded: true })
+      .then(response => response.json())
+      .then(jsonData => {
+        const current = jsonData.data.shift()
+        const forecast = jsonData.data
+        const location = {
+          city_name: jsonData.city_name,
+          country_code: jsonData.country_code,
+          state_code: jsonData.state_code,
+        }
+        this.setState({ current, forecast, location, isLoaded: true })
       })
   }
 
   render() {
-    const { location, current, forecast } = this.state.clima
-    return this.state.isLoaded ? (
+    const { location, current, forecast, isLoaded } = this.state
+    return isLoaded ? (
       <div className="App">
         <div className="container">
           <Top current={current} location={location} />
@@ -531,17 +549,18 @@ const Top = props => {
   return (
     <div className="top">
       <img
-        src={current.condition.icon}
+        src={require(`./icons/${current.weather.icon}.png`)}
         alt="Clima principal"
         className="image"
       />
-      <p className="temp">{current.temp_c} °C</p>
+      <p className="temp">{current.temp} °C</p>
       <h4 className="city">
-        {location.name}, {location.region}, {location.country}
+        {location.city_name}, {location.state_code}, {location.country_code}
       </h4>
 
-      <div>
-        ST: {current.feelslike_c} °C, H: {current.humidity} %
+      <div className="temphr">
+        Max: {current.max_temp} °C, Min: {current.min_temp} °C, H: {current.rh}{' '}
+        %
       </div>
     </div>
   )
@@ -561,8 +580,8 @@ const Bottom = props => {
   const { forecast } = props
   return (
     <div className="bottom">
-      {forecast.forecastday.map(dia => {
-        return <Card dia={dia} key={dia.date} />
+      {forecast.map(dia => {
+        return <Card dia={dia} key={dia.valid_date} />
       })}
     </div>
   )
@@ -588,28 +607,28 @@ const semana = [
 ]
 
 const getWeekDay = fecha => {
-  return semana[new Date(fecha * 1000).getDay()]
+  return semana[new Date(fecha).getDay()]
 }
 
 const Card = props => {
   const { dia } = props
   return (
     <div className="card">
-      <h5>{getWeekDay(dia.date_epoch)}</h5>
-      <h6>{dia.date}</h6>
+      <h5>{getWeekDay(dia.datetime)}</h5>
+      <h6>{dia.valid_date}</h6>
       <img
-        src={dia.day.condition.icon}
+        src={require(`./icons/${dia.weather.icon}.png`)}
         alt="Clima diario"
         className="imagebottom"
       />
       <div className="minmax">
         <p>
           <span className="tempmax" />
-          {parseInt(dia.day.maxtemp_c)}
+          {parseInt(dia.max_temp)}
         </p>
         <p>
           <span className="tempmin" />
-          {parseInt(dia.day.mintemp_c)}
+          {parseInt(dia.min_temp)}
         </p>
       </div>
     </div>

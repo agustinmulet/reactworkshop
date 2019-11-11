@@ -11,7 +11,7 @@ class App extends Component {
             <img src={logo} alt="Clima principal" className="image" />
             <p className="temp">25 °C</p>
             <h2 className="city">Buenos Aires, CABA, Argentina</h2>
-            <div className="feelslike">ST: 25.4 °C, H: 81 %</div>
+            <div className="temphr">Max: 28 °C, Min: 18 °C, H: 58 %</div>
           </div>
           <div className="bottom">
             <div className="card">

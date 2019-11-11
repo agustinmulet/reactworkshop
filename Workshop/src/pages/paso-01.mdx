@@ -4,7 +4,7 @@ path: /paso-01/
 index: 3
 ---
 
-import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@reach/tabs"
+import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@reach/tabs'
 import Image from '../components/Image'
 
 Buenísimo, ya tenemos una idea de cómo hacer los componentes de nuestra app del
@@ -15,11 +15,11 @@ nuestro `src/App.css` ya existente. Hagamos lo mismo con el archivo
 clases \(`className` en React, recuerdan? 😜\) con los estilos recién copiados.
 Una vez que reemplazamos el código en nuestros archivos App.js y App.css vamos a
 generar una API key para poder utilizar el servicio de la API del clima de
-[Apixu](https://www.apixu.com), la página para registrarse es
-[esta](https://www.apixu.com/signup.aspx). Elegí Apixu porque me pareció una de
-las más simples en cuanto al registro y la velocidad en la que proveen la key,
-si les pregunta tipo de plan, obviamente pongan **FREE** ya que vamos a usarlo
-para cosas personales.
+[Weatherbit.io](https://www.weatherbit.io/), la página para registrarse es
+[esta](https://www.weatherbit.io/account/create). Elegí Weatherbit porque Apixu
+se puso bastante restrictiva y Weatherbit fue una de las más simples de usar que
+encontré. **Warning:** Van a tener que loguearse a cada rato, tienen medio roto
+el login parece, pero es lo mejor que encontré a cuanto info que brinda la API.
 
 Bueno, repasamos antes de comenzar, deberíamos tener:
 
@@ -29,8 +29,8 @@ Bueno, repasamos antes de comenzar, deberíamos tener:
 - Todo el código del archivo
   [`template.js` **(click para acceder al archivo)**](https://github.com/agustinmulet/reactworkshop/blob/master/templates/template.js)
   en nuestro -> `src/App.js`
-- Nuestra API Key de Apixu, la podemos ver en la página de Apixu en el
-  [Dashboard](https://www.apixu.com/my/)
+- Nuestra API Key de Weatherbit, la podemos ver en la página de Weatherbit.io en
+  el [Dashboard](https://www.weatherbit.io/account/dashboard)
 
 Una vez que hagamos eso, si todavía tenemos corriendo el servidor, deberíamos
 ver cómo se debería ver nuestra app terminada \(falta componentizar todo,
@@ -49,22 +49,23 @@ lo necesario, pero si quieren ampliar pueden leer
 [el post acá \(en inglés\)](https://blog.hellojs.org/fetching-api-data-with-react-js-460fe8bbf8f2).
 
 Antes de hacer el `fetch` para traer la data, tenemos que saber dónde pedirla 😝
-Según la docu de Apixu, si le 'pegamos' a esta dirección, vamos a tener el
+Según la docu de Weatherbit, si le 'pegamos' a esta dirección, vamos a tener el
 pronóstico para el día de hoy + 6 días \(sí, el día de hoy está incluido cuando
-hacemos `days=7`, está dos veces...\)
+hacemos `days=7`, por suerte 😀\)
 
-`https://api.apixu.com/v1/forecast.json?key=<YOUR_API_KEY>&q=Buenos+Aires&days=6`
+`https://api.weatherbit.io/v2.0/forecast/daily?city=Buenos+Aires,Argentina&key=<YOUR_API_KEY>&days=7`
 
 Donde dice `<YOUR_API_KEY>` ponemos nuestra key generada cuando nos registramos,
 y si vamos a esa dirección en el navegador \(con nuestra key pegada\) vamos a
 ver un JSON con toda la data que necesitamos \(si se veo medio feo podemos
 copiar y pegar el texto del JSON en [JSON Formatter](https://jsonformatter.org)
-y va a quedar más claro cómo están compuestos los objetos, y en la
-[docu de apixu \(en inglés\)](https://www.apixu.com/doc/forecast.aspx) explica qué es cada
-parte del objeto, aunque vamos a ir viendo qué necesitamos para cada parte de
-nuestra app\) Como podemos ver, estamos buscando el clima en la ciudad de Buenos
-Aires, pero cambien el texto por su ciudad o por la que quieran buscar en el
-mundo! 😁
+y va a quedar más claro cómo están compuestos los objetos, o buscar alguna
+extensión del navegador para formatear JSON, y en la
+[docu de Weatherbit \(en inglés\)](https://www.weatherbit.io/api/weather-forecast-16-day)
+explica qué es cada parte del objeto, aunque vamos a ir viendo qué necesitamos
+para cada parte de nuestra app\) Como podemos ver, estamos buscando el clima en
+la ciudad de Buenos Aires, Argentina, pero cambien el texto por su ciudad o por
+la que quieran buscar en el mundo! 😁
 
 Y ahora la pregunta del millón: **dónde hacemos la llamada a la API en nuestro
 componente?**
@@ -78,7 +79,7 @@ este diagrama podemos verlos bien y cuándo se ejecuta cada uno:
 
 [Diagrama de Ciclos de vida de componentes](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 
-El método donde vamos a hacer el fetch hacia la API de apixu es
+El método donde vamos a hacer el fetch hacia la API de Weatherbit es
 `componentDidMount()`, con la idea de que primero nuestro componente se monte
 \(y renderice\) correctamente y en ese momento buscar los datos para que se
 actualice el estado de nuestro componente causando que React lo re-renderice
@@ -111,7 +112,7 @@ cuando la querramos usar. Entonces dentro del archivo debemos tener una línea
 como la siguiente:
 
 ```javascript
-REACT_APP_API_KEY = '0df7569d7af3432a93217005XXXXXXX'
+REACT_APP_API_KEY = 'c4321dd709e94986a41d00XXXXXXXXXX'
 ```
 
 Ya con tener esa línea podemos usar esta variable para hacer el fetch, para
@@ -121,10 +122,8 @@ de forma más prolija, utilizando
 [template strings de ES6](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/template_strings),
 lo cual quedaría de la siguiente manera:
 
-```javascript
-`https://api.apixu.com/v1/forecast.json?key=${
-  process.env.REACT_APP_API_KEY
-}&q=Buenos+Aires&days=6`
+```ts
+;`https://api.weatherbit.io/v2.0/forecast/daily?city=Buenos+Aires,Argentina&key=${process.env.REACT_APP_API_KEY}&days=7`
 ```
 
 Donde podemos observar que el string en su totalidad va a estar envuelto entre
@@ -162,7 +161,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clima: {}
+      current: {},
+      forecast: [],
+      location: {}
     };
   }
 
@@ -170,9 +171,28 @@ class App extends Component {
 /* [...] */
 ```
 
-En `clima` vamos a guardar lo que traigamos de nuestra API para luego poder usar
-esa data. Vamos a hacer el `fetch()` a la dirección que obtuvimos antes, con
-nuestra API_KEY y como dijimos, va a ser adentro del método
+Ya vimos más arriba qué recibimos en el JSON y un link a la docu de Weatherbit
+para ver para qué nos sirve cada cosa, pero pasemos en limpio:
+
+En nuestro objeto de respuesta de la API, vamos a tener algunos datos sueltos
+como ser el nombre de la ciudad, el código del país, latitud y longitud... Pero
+lo que más nos interesa estudiar es el **Array** (colección de cosas) de nombre
+`data`, el cual tiene objetos con el clima de los 7 días que pedimos incluyendo
+hoy (el día actual es el primer objeto en el array)
+
+Por lo que podemos ver, en la parte de arriba \(el `div` con la clase 'top'\)
+vamos a usar un objeto con algunos datos de los que están sueltos y el primer
+objeto de `data`.
+
+Vamos a manipular un poco los datos que nos lleguen de la API para intentar
+hacer más amena la transición a esta versión del workshop (si hiciste la versión
+de Apixu, este refactor espero que no te complique la existencia). En `current`
+vamos a guardar el primer valor del array `data`, que como dijimos antes, va a
+ser el clima del día _corriente_. Luego en `forecast` guardamos el resto de los
+días para usarlos en la parte inferior y `location` va a ser un objeto que vamos
+a armar a mano con una estructura parecida a un objeto que venía de la anterior
+API (Apixu te odio 😑). Vayamos entonces a hacer el `fetch()` a la dirección que
+obtuvimos antes, con nuestra API_KEY y como dijimos, va a ser adentro del método
 `componentDidMount()`:
 
 ```jsx
@@ -185,13 +205,18 @@ class App extends Component {
   // Definimos el método componentDidMount con el fetch
   componentDidMount() {
     fetch(
-      `https://api.apixu.com/v1/forecast.json?key=${
-        process.env.REACT_APP_API_KEY
-      }&q=Buenos+Aires&days=6`
+      `https://api.weatherbit.io/v2.0/forecast/daily?city=Buenos+Aires,Argentina&key=${process.env.REACT_APP_API_KEY}&days=7`
     )
       .then(response => response.json())
       .then(jsonData => {
-        this.setState({ clima: jsonData });
+        const current = jsonData.data.shift();
+        const forecast = jsonData.data;
+        const location = {
+          city_name: jsonData.city_name,
+          country_code: jsonData.country_code,
+          state_code: jsonData.state_code
+        };
+        this.setState({ current: current, forecast: forecast, location: location });
       });
   }
 
@@ -200,30 +225,32 @@ class App extends Component {
 ```
 
 Vamos a analizar un poco lo que hicimos en el método, primero hicimos el
-[fetch](https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Utilizando_Fetch) \(el link es a la documentación para ampliar\) 
-y esto nos retorna un objeto
+[fetch](https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Utilizando_Fetch)
+\(el link es a la documentación para ampliar\) y esto nos retorna un objeto
 Promise, es una promesa de la que vamos a obtener nuestros datos. Utilizando
-programación funcional con _function chaining_, podemos decir que `then` \(entonces\),
-una vez obtenida la `response` \(respuesta\), la retorne en
+programación funcional con _function chaining_, podemos decir que `then`
+\(entonces\), una vez obtenida la `response` \(respuesta\), la retorne en
 formato JSON, usando el método `json()`. Luego siguiendo con la cadena de
 funciones, ese JSON va a caer en el siguiente `then` y lo recibimos en
-`jsonData`, actualizando luego el estado y guardando todo lo recibido en nuestro
-estado, en `clima`. Ah, y no intenten usar esa API key, no funciona 😜
+`jsonData`, donde está nuestra data del clima que necesitamos manipular. Como
+dijimos, en `current` guardamos el primer objeto usando el método
+[shift()](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/shift)
+de arrays, lo cual ya nos deja a `data` con los 6 días restantes, esos los
+metemos en `forecast` y luego nos armamos `location` con un objeto con los datos
+que queremos mostrar, actualizando luego el estado y guardando todo lo que
+generamos recién en cada parte del estado de nuestro componente. Algo copado que
+podemos hacer es, que si nuestra variable (o constante) tiene el mismo nombre
+que lo que queremos modificar en el estado, se puede poner de la siguiente
+manera:
 
-Buenísimo, ya tenemos los datos el estado de nuestro componente, ahora nos falta
-empezar a usarlos!
+```javascript
+this.setState({ current, forecast, location })
+```
 
-Ya vimos más arriba qué recibimos en el JSON y un link a la docu de apixu para
-ver qué nos sirve, pero pasemos en limpio:
+Queda más compacto y a gusto de cada uno, yo lo prefiero así, más cortito 😁
 
-|         Nombre         |  Tipo  |                                                                     Para qué                                                                      |
-| :--------------------: | :----: | :-----------------------------------------------------------------------------------------------------------------------------------------------: |
-|       `location`       | objeto |                         Tiene datos de la locación que buscamos, tales como el nombre, país, región, latitud y longitud.                          |
-|       `current`        | objeto | Tiene datos de la temperatura actual que buscamos, además de proveernos la imagen a mostrar del sol, nubes o lluvia dentro del objeto `condition` |
-| `forecast.forecastday` | array  |                             Es un arreglo de objetos, cada objeto es un día y tiene algunos datos menos que `current`                             |
-
-Así que, por lo que podemos ver, en la parte de arriba \(el `div` con la clase
-'top'\) vamos a usar más que nada datos de la parte de `current` y `location`.
+Buenísimo, ya tenemos los datos en el estado de nuestro componente, ahora nos
+falta empezar a usarlos!
 
 Un **truquito** \(ponele\) para que no nos quede taaan largo nuestro código al
 usar los datos de nuestro estado \(_this.state.clima.blablabla_ cada vez\),
@@ -232,32 +259,33 @@ podemos usar
 de ES6:
 
 ```jsx
-const { location, current, forecast } = this.state.clima
+const { location, current, forecast } = this.state
 ```
 
 Esto debemos insertarlo en el `render()` de nuestro componente, antes del
 `return`. Luego podemos acceder a nuestra data por ejemplo haciendo
-`location.name`, `current.humidity`, etc. Ya vimos cómo acceder a los datos que
+`location.city_name`, `current.temp`, etc. Ya vimos cómo acceder a los datos que
 recibimos en el estado, así que les dejo un rato para ir acomodando toda la data
 en la parte de arriba de nuestro componente... ... ... Listo? Ahhh te tira
 errores? `undefined` por todos lados? _Bienvenido/a a Javascript_ 🤣🤣 Nah, para
-evitar estas cosas existe algo súper útil que es el **conditional rendering** \([link a la docu](https://es.reactjs.org/docs/conditional-rendering.html)\),
+evitar estas cosas existe algo súper útil que es el **conditional rendering**
+\([link a la docu](https://es.reactjs.org/docs/conditional-rendering.html)\),
 donde le decimos que renderice cuando ya nuestra data esté "fetcheada" y
-disponible. Esto lo logramos con un valor booleano \(true o false\) en el estado
-del componente que debemos alterar una vez que terminemos con el fetch.
+disponible. Esto lo logramos con un valor booleano \(_true o false_\) en el
+estado del componente que debemos alterar una vez que terminemos con el fetch.
 
 Entonces agregamos en el estado `isLoaded: false` para indicar que todavía no
 está cargada nuestra data. Luego en el `fetch()` actualizamos nuestro estado e
 indicamos que ya junto con nuestra data cargada, cambiamos `isLoaded` a `true`:
-`this.setState({ clima: jsonData, isLoaded: true })`. Y luego al renderizar,
-retornamos según esté cargada o no nuestra data, verificando con el
+**this.setState({ current, forecast, location, isLoaded: true })**. Y luego al
+renderizar, retornamos según esté cargada o no nuestra data, verificando con el
 [operador ternario](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Operadores/Conditional_Operator)
 de la siguiente forma:
 
 ```jsx
 render() {
-  const { location, current, forecast } = this.state.clima;
-    return this.state.isLoaded ? (
+  const { location, current, forecast, isLoaded } = this.state;
+    return isLoaded ? (
       {/* Nuestro componente */}
     ) : (
       <div className="App">
@@ -266,37 +294,60 @@ render() {
     )
 ```
 
-Bueno, esto quizás es opcional pero me parece que queda mejor así. Vamos a usar
-una función de `String` para cambiar el tamaño de nuestra imagen del clima de
-arriba que queda medio chico en 64x64 \(que es como lo recibimos desde la API\).
-Si ven en `current.condition.icon`, hay un string con la URL de la imagen a
-mostrar \(sol, nublado, lluvia, depende\), para cambiar la resolución que figura
-ahí podemos manipular los datos recibidos con el `fetch()` antes de guardarlo en
-el estado. Entonces hacemos lo siguiente:
+Bueno, el tema de la imagen del clima de arriba es un poco complejo porque
+Weatherbit adentro de nuestro objeto del clima actual nos provee un objeto
+`weather` con una propiedad `icon`, lo cual es un string con unos caracteres
+raros como "c02d" 🤔🤔🤔 Pero si escarban en la documentación de Weatherbit (o
+les paso mejor los links directo 😜) van a ver que cada código responde a un
+iconito distinto del clima [en este link](https://www.weatherbit.io/api/codes)
+_Entonces vamos a tener que bajar los iconitos uno por uno?_ 🤦‍♂️🤦‍♀️ Nooooo,
+tranquis, que Weatherbit es copado y nos provee un pack de íconos que ya tiene
+cada uno el nombre correspondiente al código que nos llega desde la API ;D Así
+que vayamos a [este link](https://www.weatherbit.io/api/meta) y bajemos el
+último pack con todas las imágenes, **Weatherbit weather Icons**, y podemos
+descomprimirlo en `/src` para que nos quede `/src/icons` y nuestras imágenes png
+adentro.
+
+(Gracias Pablo ([@wbkpablo](https://twitter.com/wbkpablo)) por pasarme el link
+del pack y coparte a avisarme todos los problemas del workshop)
+
+Ahora debemos indicarle al elemento `img` dónde tiene que ir a buscar las
+imágenes para cada iconito que nos llega, y vamos a hacer que los busque de
+forma dinámica.
+
+Esto lo podemos hacer con los _template strings_ de los que hablamos antes pero
+con una salvedad: necesitamos que nuestra app de react se entere de las imágenes
+que están en esa carpeta, usando `require()`. Sino tendríamos que copiar nuestra
+carpeta directo en `/public` y no es algo recomendable... Así que les dejo
+intentarlo y si no les sale les dejo cómo sería acá abajo:
+
+<Tabs>
+<TabList>
+    <Tab>Soluciones</Tab>
+    <Tab>Elemento img</Tab>
+</TabList>
+
+<TabPanels>
+
+<TabPanel>
+  Para ver la solución de cada archivo hacé click en las pestañas 👆
+</TabPanel>
+
+<TabPanel>
 
 ```jsx
-/* [...] */
-  componentDidMount() {
-    fetch(
-      `https://api.apixu.com/v1/forecast.json?key=${
-        process.env.REACT_APP_API_KEY
-      }&q=Buenos+Aires&days=6`
-    )
-      .then(response => response.json())
-      .then(jsonData => {
-          //Manipulamos el string con la imagen para que sea de 128x128 y quede mejor
-          jsonData.current.condition.icon = jsonData.current.condition.icon.replace(
-          "64x64",
-          "128x128"
-        );
-        this.setState({ clima: jsonData });
-      });
-  }
-/* [...] */
+<img
+  src={require(`./icons/${current.weather.icon}.png`)}
+  alt="Clima principal"
+  className="image"
+/>
 ```
 
-Usando `replace` le decimos que reemplace '64x64' por '128x128' en la URL
-recibida y listo, ya nos queda todo más lindo y más mejor.
+</TabPanel>
+
+</TabPanels>
+
+</Tabs>
 
 Una vez que terminamos con la parte de arriba, debería quedarnos algo así
 nuestro `App.js`:
@@ -310,7 +361,7 @@ nuestro `App.js`:
 <TabPanels>
 
 <TabPanel>
-    Para ver la solución de cada archivo hacé click en las pestañas 👆
+  Para ver la solución de cada archivo hacé click en las pestañas 👆
 </TabPanel>
 
 <TabPanel>
@@ -324,47 +375,47 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      clima: {},
-      isLoaded: false,
+      current: {},
+      forecast: [],
+      location: {}
+      isLoaded: false
     }
   }
 
   componentDidMount() {
     fetch(
-      `https://api.apixu.com/v1/forecast.json?key=${
-        process.env.REACT_APP_API_KEY
-      }&q=Buenos+Aires&days=6`,
+      `https://api.weatherbit.io/v2.0/forecast/daily?city=Buenos+Aires,Argentina&key=${process.env.REACT_APP_API_KEY}&days=7`
     )
       .then(response => response.json())
       .then(jsonData => {
-        jsonData.current.condition.icon = jsonData.current.condition.icon.replace(
-          '64x64',
-          '128x128',
-        )
-        this.setState({
-          clima: jsonData,
-          isLoaded: true,
-        })
-      })
+        const current = jsonData.data.shift();
+        const forecast = jsonData.data;
+        const location = {
+          city_name: jsonData.city_name,
+          country_code: jsonData.country_code,
+          state_code: jsonData.state_code
+        };
+        this.setState({ current, forecast, location, isLoaded: true });
+      });
   }
 
   render() {
-    const { location, current, forecast } = this.state.clima
-    return this.state.isLoaded ? (
+    const { location, current, forecast, isLoaded } = this.state
+    return isLoaded ? (
       <div className="App">
         <div className="container">
           <div className="top">
             <img
-              src={current.condition.icon}
+              src={require(`./icons/${current.weather.icon}.png`)}
               alt="Clima principal"
               className="image"
             />
-            <p className="temp">{current.temp_c} °C</p>
+            <p className="temp">{current.temp} °C</p>
             <h4 className="city">
-              {location.name}, {location.region}, {location.country}
+              {location.city_name}, {location.state_code}, {location.country_code}
             </h4>
-            <div className="feelslike">
-              ST: {current.feelslike_c} °C, H: {current.humidity} %
+            <div className="temphr">
+              Max: {current.max_temp} °C, Min: {current.min_temp} °C, H: {current.rh} %
             </div>
           </div>
           <div className="bottom">

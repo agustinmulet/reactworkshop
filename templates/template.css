@@ -1,17 +1,90 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+
+html,
+body,
+#root {
+  height: 100%;
+  min-height: 100%
+}
+
 .App {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
   text-align: center;
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+@media only screen and (max-width: 950px) {
+  div .container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .top {
+    width: 100%;
+    height: 100%;
+  }
+
+  .bottom {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  div .card {
+    max-width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 16px 0 8px 0;
+  }
+
+  div .card:not(:last-child) {
+    border-bottom: 1px solid #888888;
+    border-right: 0px;
+  }
+
+  div .card h5 {
+    margin: 20px 0;
+  }
+
+  div .card h6 {
+    margin: 22px 0;
+  }
+
+  .minmax {
+    min-width: 6rem;
+  }
+
+  .minmax .tempmax {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+
+    border-bottom: 8px solid #ff4136;
+    margin-top: -15px;
+  }
+
+  .minmax .tempmin {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+
+    border-top: 8px solid #0074d9;
+    margin-top: -15px;
+  }
 }
 
 .container {
@@ -28,18 +101,21 @@
 }
 
 .top {
-  display: grid;
+  display: flex;
   border-radius: 20px 20px 0 0;
-  background-image: url("https://www.motherlandsafaris.com/wp-content/uploads/2014/11/weather.jpg");
   background-size: cover;
-  justify-content: end;
+  align-content: flex-end;
+  justify-content: space-around;
+  flex-direction: column;
   grid-area: top;
+  text-align: end;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .image {
   height: 128px;
   width: 128px;
-  justify-self: flex-end;
+  align-self: flex-end;
 }
 
 .city {
@@ -51,6 +127,10 @@
   padding: 0 10px 0 0;
   margin: 0;
   font-weight: bolder;
+}
+
+.temphr {
+  padding: 0 8px;
 }
 
 .minmax {
@@ -88,8 +168,9 @@
 }
 
 .bottom {
+  max-width: 100%;
   border-radius: 0 0 20px 20px;
-  display: grid;
+  display: flex;
   grid-area: bottom;
   background: #fff;
   color: #282c34;
@@ -108,6 +189,12 @@
 
 .card h5 {
   margin: 14px 0 7px 0;
+}
+
+.card h6 {
+  font-size: .6em;
+  margin: 0;
+  color: #888888;
 }
 
 .imagebottom {

@@ -74,12 +74,12 @@ function Dropdown() {
       theme="light-border dropdown"
       updateDuration={0}
       arrow
-      appendTo={ref => ref.parentNode}
+      appendTo={(ref) => ref.parentNode}
       autoFocus={false}
-      onMount={tip => {
+      onMount={(tip) => {
         tip.reference.setAttribute('aria-expanded', 'true')
       }}
-      onHide={tip => {
+      onHide={(tip) => {
         tip.reference.setAttribute('aria-expanded', 'false')
       }}
     >

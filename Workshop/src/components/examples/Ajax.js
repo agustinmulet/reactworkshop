@@ -10,7 +10,7 @@ function Ajax() {
       content={initialContent}
       animation="fade"
       animateFill={false}
-      onShow={async tip => {
+      onShow={async (tip) => {
         if (!tip.state.ajax) {
           tip.state.ajax = {
             isFetching: false,
@@ -43,7 +43,7 @@ function Ajax() {
           tip.state.ajax.isFetching = false
         }
       }}
-      onHidden={tip => {
+      onHidden={(tip) => {
         tip.state.ajax.canFetch = true
         tip.setContent(initialContent)
       }}

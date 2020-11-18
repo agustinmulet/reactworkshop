@@ -17,10 +17,10 @@ class ElasticScroll extends Component {
   }
 
   render() {
-    return Children.map(this.props.children, child =>
+    return Children.map(this.props.children, (child) =>
       cloneElement(child, {
         children: <div data-elastic-wrapper>{child.props.children}</div>,
-        ref: node => {
+        ref: (node) => {
           this.scroller = node
           const { ref } = child
           if (ref) {

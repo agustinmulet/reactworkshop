@@ -10,7 +10,7 @@ class AjaxSmooth extends Component {
     showImage: false,
   }
 
-  onShow = tip => {
+  onShow = (tip) => {
     if (this.state.isFetching === true || this.state.canFetch === false) {
       return
     }
@@ -30,8 +30,8 @@ class AjaxSmooth extends Component {
     popper.style.width = '200px'
 
     fetch('https://unsplash.it/200/?random')
-      .then(response => response.blob())
-      .then(blob => {
+      .then((response) => response.blob())
+      .then((blob) => {
         this.setState({
           isFetching: false,
           imageURL: URL.createObjectURL(blob),
@@ -46,7 +46,7 @@ class AjaxSmooth extends Component {
         // on the tooltip this isn't actually needed, but if you
         // have an arrow element it will be.
         if (!tip._transitionEndListener) {
-          tip._transitionEndListener = event => {
+          tip._transitionEndListener = (event) => {
             if (
               event.target === event.currentTarget &&
               event.propertyName === 'height'
@@ -87,7 +87,7 @@ class AjaxSmooth extends Component {
       })
   }
 
-  onHidden = tip => {
+  onHidden = (tip) => {
     this.setState({
       canFetch: true,
       imageURL: null,

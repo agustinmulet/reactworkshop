@@ -7,7 +7,7 @@ import X from 'react-feather/dist/icons/x'
 import ElasticScroll from './ElasticScroll'
 
 const Navbar = styled.nav`
-  display: ${props => (props.isMounted ? 'block' : 'none')};
+  display: ${(props) => (props.isMounted ? 'block' : 'none')};
   position: fixed;
   top: 0;
   bottom: 0;
@@ -19,15 +19,15 @@ const Navbar = styled.nav`
   color: white;
   overflow-y: auto;
   z-index: 1;
-  transform: ${props =>
+  transform: ${(props) =>
     props.isOpen ? 'translate3d(0, 0, 0)' : 'translate3d(-100%, 0, 0)'};
-  transition: transform ${props => (props.isOpen ? '0.45s' : '0.3s')},
+  transition: transform ${(props) => (props.isOpen ? '0.45s' : '0.3s')},
     visibility 0.2s;
-  transition-timing-function: ${props =>
+  transition-timing-function: ${(props) =>
     props.isOpen
       ? 'cubic-bezier(.165, .84, .44, 1)'
       : 'cubic-bezier(.77, 0, .175, 1)'};
-  visibility: ${props => (props.isOpen ? 'visible' : 'hidden')};
+  visibility: ${(props) => (props.isOpen ? 'visible' : 'hidden')};
 
   ${MEDIA.lg} {
     display: block;
@@ -98,7 +98,7 @@ class Nav extends Component {
     }
   }
 
-  handleBlur = e => {
+  handleBlur = (e) => {
     if (!e.currentTarget.contains(e.relatedTarget)) {
       this.props.close()
     }
@@ -136,7 +136,7 @@ class Nav extends Component {
           <List>
             <StaticQuery
               query={allMdxQuery}
-              render={data => {
+              render={(data) => {
                 return sortPagesByIndex(data.allMdx.edges).map(({ node }) => (
                   <ListItem key={node.frontmatter.path}>
                     <Link to={node.frontmatter.path}>

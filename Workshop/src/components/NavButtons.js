@@ -21,14 +21,14 @@ const FadedText = styled.span`
 const NavButton = styled(Link)`
   display: block;
   padding: 40px 25px;
-  border: ${props =>
+  border: ${(props) =>
     props['data-next'] ? 'none' : '1px solid rgba(0, 16, 64, 0.15)'};
   border-radius: 4px;
-  background: ${props =>
+  background: ${(props) =>
     props['data-next'] ? 'linear-gradient(90deg,#f3edff,#edf5ff)' : 'white'};
   text-decoration: none;
-  color: ${props => (props['data-next'] ? '#2569d7' : 'inherit')};
-  filter: ${props => props['data-next'] && 'saturate(1.15)'};
+  color: ${(props) => (props['data-next'] ? '#2569d7' : 'inherit')};
+  filter: ${(props) => props['data-next'] && 'saturate(1.15)'};
   font-weight: bold;
   transition: box-shadow 0.2s;
   flex: 1;
@@ -39,8 +39,9 @@ const NavButton = styled(Link)`
 
   &:hover {
     border-color: inherit;
-    border-bottom: ${props => props['data-next'] && 'none'};
-    filter: ${props => props['data-next'] && 'saturate(1.15) brightness(1.02)'};
+    border-bottom: ${(props) => props['data-next'] && 'none'};
+    filter: ${(props) =>
+      props['data-next'] && 'saturate(1.15) brightness(1.02)'};
   }
 
   ${MEDIA.md} {
@@ -53,7 +54,7 @@ function NavButtons({ next }) {
     <Flex style={{ marginTop: 40, marginLeft: -10, marginRight: -10 }}>
       <StaticQuery
         query={allMdxQuery}
-        render={data => {
+        render={(data) => {
           const links = sortPagesByIndex(data.allMdx.edges).map(
             ({ node }) => node,
           )

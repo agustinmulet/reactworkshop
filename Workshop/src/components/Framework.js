@@ -22,7 +22,7 @@ export const Center = styled.div`
 export const Container = styled.div`
   position: relative;
   max-width: 940px;
-  padding: 0 ${props => props.mobilePadding}%;
+  padding: 0 ${(props) => props.mobilePadding}%;
   margin: 0 auto;
 
   ${MEDIA.sm} {
@@ -45,7 +45,7 @@ export const Row = styled(({ children, spacing, ...rest }) => (
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0 -${props => props.spacing}px;
+  margin: 0 -${(props) => props.spacing}px;
 `
 Row.defaultProps = {
   spacing: 15,
@@ -57,19 +57,19 @@ export const Col = styled(
   ),
 )`
   flex: 1;
-  padding: 0 ${props => props.spacing}px;
-  ${props =>
+  padding: 0 ${(props) => props.spacing}px;
+  ${(props) =>
     props.base &&
     css`
-      flex-basis: ${props => (100 * props.base) / 12}%;
+      flex-basis: ${(props) => (100 * props.base) / 12}%;
     `}
-  ${props =>
+  ${(props) =>
     ['xs', 'sm', 'md', 'lg', 'xl']
-      .filter(size => props[size])
+      .filter((size) => props[size])
       .map(
-        size => css`
+        (size) => css`
           ${MEDIA[size]} {
-            flex-basis: ${props => (100 * props[size]) / 12}%;
+            flex-basis: ${(props) => (100 * props[size]) / 12}%;
           }
         `,
       )};
@@ -78,7 +78,7 @@ Col.defaultProps = {
   spacing: 15,
 }
 
-export const Link = styled(GatsbyLink).attrs(props => ({
+export const Link = styled(GatsbyLink).attrs((props) => ({
   activeStyle: {
     fontWeight: 'bold',
     background: 'linear-gradient(90deg, #9dc6ff , #346CA4)',
@@ -90,7 +90,7 @@ export const Link = styled(GatsbyLink).attrs(props => ({
   transition: color 0.15s;
 `
 
-export const ExternalLink = styled.a.attrs(props => ({
+export const ExternalLink = styled.a.attrs((props) => ({
   target: '_blank',
   rel: 'noopener noreferrer',
 }))`
@@ -106,12 +106,12 @@ export const ExternalLink = styled.a.attrs(props => ({
 export const Flex = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: ${props => props.justify};
+  justify-content: ${(props) => props.justify};
 
   > div {
     margin-right: 15px;
     margin-bottom: 15px;
-    flex: ${props => props.type === 'even' && 1};
+    flex: ${(props) => props.type === 'even' && 1};
   }
 `
 Flex.defaultProps = {

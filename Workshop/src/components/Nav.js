@@ -15,6 +15,7 @@ const Navbar = styled.nav`
   border-right: 1px solid rgba(0, 16, 64, 0.08);
   background-clip: padding-box;
   padding: 16px 0;
+  text-align: center;
   background: #346ca4;
   color: white;
   overflow-y: auto;

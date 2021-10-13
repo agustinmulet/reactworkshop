@@ -36,7 +36,7 @@ const Image = ({ imgName }) => (
       if (!image) {
         return null
       }
-      return <Img fluid={image.node.fluid} />
+      return <Img loading="eager" fluid={image.node.fluid} />
     }}
   />
 )

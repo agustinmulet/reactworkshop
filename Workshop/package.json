@@ -9,7 +9,7 @@
     "@mdx-js/react": "^1.6.22",
     "@mdx-js/tag": "^0.20.3",
     "@reach/tabs": "^0.11.2",
-    "babel-plugin-styled-components": "^1.13.2",
+    "babel-plugin-styled-components": "^1.13.3",
     "elastic-scroll-polyfill": "^2.1.0",
     "gatsby": "^2.32.13",
     "gatsby-image": "^2.11.0",
@@ -35,7 +35,7 @@
     "react-feather": "^2.0.9",
     "react-helmet": "^6.1.0",
     "rehype-react": "^6.2.1",
-    "styled-components": "^5.3.1"
+    "styled-components": "^5.3.3"
   },
   "keywords": [
     "gatsby"
@@ -51,7 +51,7 @@
   "devDependencies": {
     "@mdx-js/loader": "^1.6.22",
     "gh-pages": "^3.2.3",
-    "loader-utils": "^2.0.0",
+    "loader-utils": "^2.0.2",
     "prettier": "^2.4.1"
   },
   "repository": {

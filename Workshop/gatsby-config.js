@@ -21,8 +21,8 @@ module.exports = {
         path: `${__dirname}/src/pages/`,
       },
     },
+    `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
-    //`gatsby-transformer-remark`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
@@ -44,9 +44,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-catch-links`,
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.app/offline
-    // 'gatsby-plugin-offline',
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-mdx`,

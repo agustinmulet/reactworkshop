@@ -77,7 +77,7 @@ como ya hicimos. La información de la petición la encontramos en
 exports.handler = (event, context, callback) => {
   //Chequeamos el tipo de petición HTTP, puede ser GET, POST...
   if (event.httpMethod === 'GET') {
-    //Acá tenemos que buscar la data a apixu y retornarla en el
+    //Acá tenemos que ir a buscar la data a Weatherbit y retornarla en el
     //body de un objeto usando la función callback
   }
 }
@@ -87,7 +87,7 @@ Bien, ahora tenemos que traernos la dirección de la API que nos la traemos del
 Frontend y necesitamos una forma de traernos la data porque `fetch()` no nos
 sirve acá \(en el "backend"\). Empecemos por tener la URL de la API a mano así
 después la usamos para ir a buscar la data, en el renglón siguiente al
-`exports.handler` y afuera del `if` nos guardamos la URL de la petición a apixu
+`exports.handler` y afuera del `if` nos guardamos la URL de la petición a Weatherbit
 en una constante:
 
 ```javascript
@@ -144,12 +144,12 @@ if (event.httpMethod === 'GET') {
 
 Pero esto cada vez se complica más! 🤬🤬🤬 Bueno, parece complejo pero yo creo
 que explicando cada parte se entiende bien lo que estamos haciendo: Con
-`request.get` vamos a ir a buscar a nuestra URL la data de apixu, luego esa data
+`request.get` vamos a ir a buscar a nuestra URL la data de Weatherbit, luego esa data
 que se consiga, se recibe en la función que está como segundo parámetro de
 `get`, en la cual tendremos en `error` el objeto de error si llegase a haber
 alguno \(crucemos los deditos para que no 🤞\), en `res` tendremos otro objeto
 de respuesta de esta función y en `body` vamos a tener la data que recibamos de
-hacer el `request.get` a la API de apixu, es decir, el JSON que antes obteníamos
+hacer el `request.get` a la API de Weatherbit, es decir, el JSON que antes obteníamos
 al hacer el `fetch()` en el Frontend. Luego chequeamos si hay un error, y si lo
 hay retornamos en la función `callback` dos parámetros: el primero se utiliza
 para informar errores, pero vamos a enviar `null` para luego poder enviar al
@@ -157,7 +157,7 @@ Frontend un objeto \(como segundo parámetro\) informando el código de estado 5
 \(código de error\) y un `body` con los detalles del error. Lo mismo hacemos
 después, en el caso que no haya habido fallo, informamos un código de estado 200
 \(todo ok ✅\) y en `body` mandamos lo que nos retorna el resultado de la API de
-Apixu.
+Weatherbit.
 
 Con esto podríamos decir que ya estaría hecha la _Lambda Function_ de manera
 básica para hacer lo que necesitamos: No exponer nuestra API key y que nos

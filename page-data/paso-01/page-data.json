@@ -1,1 +1,5 @@
-{"componentChunkName":"component---src-pages-paso-01-mdx","path":"/paso-01/","result":{"pageContext":{"frontmatter":{"title":"Workshop - Paso 1","path":"/paso-01/","index":3}}},"staticQueryHashes":["3128451518","3423024846","3423024846","765900459","765900459"]}
+{
+    "componentChunkName": "component---src-pages-paso-01-mdx",
+    "path": "/paso-01/",
+    "result": {"pageContext":{"frontmatter":{"title":"Workshop - Paso 1","path":"/paso-01/","index":3}}},
+    "staticQueryHashes": ["1756004727","3128451518","765900459"]}

@@ -4,7 +4,7 @@ path: /props-y-state/
 index: 2
 ---
 
-import Image from '../components/Image'
+import { Props, State } from '../components/Image'
 
 Los componentes necesitan datos para trabajar y React tiene dos formas distintas
 de combinar componentes y datos: **Props** y **State**. \(Props = Propiedades
@@ -23,7 +23,7 @@ La forma de pasar datos de padres a hijos se denomina **Props** y son
 inmutables, es decir que un componente que recibe props, solamente puede leerlas
 y no sobreescribir el dato que recibe. \(Son read-only\)
 
-<Image imgName="props.jpg" alt="Explicación de Props" />
+<Props />
 
 Como vemos, las props son externas a nuestro componente. \(Imagen tomada
 prestada de
@@ -122,7 +122,7 @@ estado queremos cambiar. Luego React se encarga de hacer todos los cambios de
 forma **asíncrona** (cuidado con esto, no es instantáneo el cambio de estado),
 actualizar el estado, el virtual DOM y el DOM por nosotros.
 
-<Image imgName="state.jpg" alt="Explicación de State" />
+<State />
 
 Y acá vemos que el State es interno de cada componente. (Imagen tomada prestada
 de

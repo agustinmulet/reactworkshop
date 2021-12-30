@@ -2,4 +2,4 @@
     "componentChunkName": "component---src-pages-index-mdx",
     "path": "/",
     "result": {"pageContext":{"frontmatter":{"title":"Index","path":"/","index":0}}},
-    "staticQueryHashes": ["1756004727","3128451518","765900459"]}
+    "staticQueryHashes": ["3128451518","765900459"]}

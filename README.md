@@ -2,7 +2,7 @@
 
 En este workshop, vamos a aprender y entender las bases de React haciendo una app que nos muestre el clima en alguna ciudad. 😀
 
-[**Vamos al Workshop nomás ⇨**](https://agustinmulet-react.netlify.app/)
+[**Vamos al Workshop nomás ⇨**](https://agustinmulet.github.io/reactworkshop/)
 
 ---
 
